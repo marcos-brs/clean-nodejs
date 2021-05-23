@@ -1,4 +1,5 @@
 import express from 'express';
+import helmet from 'helmet';
 import { TesteController } from '../../presentation/controllers/teste-controller';
 import { BaseController, HttpServerConfig } from '../../presentation/protocols';
 import { ExpressControllerAdapter } from '../adapters';
@@ -39,6 +40,7 @@ export class HttpServer {
     const app = express();
 
     /* Express utilites */
+    app.use(helmet());
 
     const router = express.Router();
 
