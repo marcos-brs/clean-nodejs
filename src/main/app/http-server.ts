@@ -1,5 +1,6 @@
 import express from 'express';
 import helmet from 'helmet';
+import cors from 'cors';
 import { TesteController } from '../../presentation/controllers/teste-controller';
 import { BaseController, HttpServerConfig } from '../../presentation/protocols';
 import { ExpressControllerAdapter } from '../adapters';
@@ -41,6 +42,7 @@ export class HttpServer {
 
     /* Express utilites */
     app.use(helmet());
+    app.use(cors());
 
     const router = express.Router();
 
@@ -111,4 +113,13 @@ export class HttpServer {
 
     this.app = app;
   }
+}
+function cors(): import('express-serve-static-core').RequestHandler<
+  import('express-serve-static-core').ParamsDictionary,
+  any,
+  any,
+  import('qs').ParsedQs,
+  Record<string, any>
+> {
+  throw new Error('Function not implemented.');
 }
