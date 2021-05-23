@@ -18,6 +18,7 @@
     "@typescript-eslint/parser": "^4.24.0",
     "eslint": "^7.27.0",
     "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-airbnb-typescript-prettier": "^4.2.0",
     "eslint-plugin-import": "^2.23.3",
     "husky": "^6.0.0",
     "nodemon": "^2.0.7",

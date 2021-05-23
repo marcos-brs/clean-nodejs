@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
     "outDir": "release",
     "module": "commonjs",
     "target": "es2019",
