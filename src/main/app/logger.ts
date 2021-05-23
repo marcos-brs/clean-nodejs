@@ -8,7 +8,7 @@ const formatOut = bformat({
   outputMode: process.env.LOGGER_BEAUTIFY ? 'short' : 'bunyan',
 });
 const { Logger, ExpressLogger, AxiosLogger } = init({
-  PROJECT_NAME: 'tagma-food',
+  PROJECT_NAME: 'zero-api',
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   LOG_LEVEL: process.env.LOGGER_LEVEL || 'info',

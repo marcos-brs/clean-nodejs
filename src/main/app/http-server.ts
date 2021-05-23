@@ -96,7 +96,7 @@ export class HttpServer {
 
     app.use(expressLogger.onError.bind(expressLogger));
     app.use(expressLogger.onSuccess.bind(expressLogger));
-    app.use('/tagma-food/v1', router);
+    app.use('/zero-api/v1', router);
 
     app.use(
       '*',
