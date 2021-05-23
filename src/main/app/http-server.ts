@@ -1,7 +1,7 @@
 import express from 'express';
-import { TesteController } from '../presentation/controllers/teste-controller';
-import { BaseController, HttpServerConfig } from '../presentation/protocols';
-import { ExpressControllerAdapter } from './adapters/express-controller';
+import { TesteController } from '../../presentation/controllers/teste-controller';
+import { BaseController, HttpServerConfig } from '../../presentation/protocols';
+import { ExpressControllerAdapter } from '../adapters';
 
 export class HttpServer {
   protected app?: express.Application;

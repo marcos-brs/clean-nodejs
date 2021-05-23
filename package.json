@@ -10,10 +10,10 @@
     "build": "rm -rf release && tsc -p tsconfig-build.json",
     "lint": "eslint --fix 'src/**/*.ts' 'test/**/*.ts'",
     "test": "jest --passWithNoTests --runInBand --no-cache",
-    "test:unit": "test -- --watch -c jest-unit-config.js",
-    "test:integration": "test -- --watch -c jest-integration-config.js",
-    "test:staged": "test -- --findRelatedTests",
-    "test:ci": "test -- --coverage"
+    "test:unit": "npm run test -- --watch -c jest-unit-config.js",
+    "test:integration": "npm run test -- --watch -c jest-integration-config.js",
+    "test:staged": "npm run test -- --findRelatedTests",
+    "test:ci": "npm run test -- --coverage"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
