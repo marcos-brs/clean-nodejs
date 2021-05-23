@@ -1,0 +1,8 @@
+{
+  "name": "clean-nodejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:zerocoolbr/clean-nodejs.git",
+  "author": "Marcos Santana <brmarcossantanabr@gmail.com>",
+  "license": "MIT"
+}
