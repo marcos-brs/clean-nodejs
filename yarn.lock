@@ -1015,6 +1015,11 @@
   resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-7.0.4.tgz#00a5749810b4ad80bff73a61f9cc9d0d521feb3c"
   integrity sha512-WGZCqBZZ0mXN2RxvLHL6/7RCu+OWs28jgQMP04LWfpyJlQUMTR6YU9CNJAKDgbw+EV/u687INXuLUc7FuML/4g==
 
+"@types/validator@^13.1.3":
+  version "13.1.3"
+  resolved "https://registry.yarnpkg.com/@types/validator/-/validator-13.1.3.tgz#366b394aa3fbeed2392bf0a20ded606fa4a3d35e"
+  integrity sha512-DaOWN1zf7j+8nHhqXhIgNmS+ltAC53NXqGxYuBhWqWgqolRhddKzfZU814lkHQSTG0IUfQxU7Cg0gb8fFWo2mA==
+
 "@types/yargs-parser@*":
   version "20.2.0"
   resolved "https://registry.yarnpkg.com/@types/yargs-parser/-/yargs-parser-20.2.0.tgz#dd3e6699ba3237f0348cd085e4698780204842f9"
@@ -1725,6 +1730,15 @@ class-utils@^0.3.5:
     define-property "^0.2.5"
     isobject "^3.0.0"
     static-extend "^0.1.1"
+
+class-validator@^0.13.1:
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/class-validator/-/class-validator-0.13.1.tgz#381b2001ee6b9e05afd133671fbdf760da7dec67"
+  integrity sha512-zWIeYFhUitvAHBwNhDdCRK09hWx+P0HUwFE8US8/CxFpMVzkUK8RJl7yOIE+BVu2lxyPNgeOaFv78tLE47jBIg==
+  dependencies:
+    "@types/validator" "^13.1.3"
+    libphonenumber-js "^1.9.7"
+    validator "^13.5.2"
 
 clean-stack@^2.0.0:
   version "2.2.0"
@@ -4251,6 +4265,11 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
+libphonenumber-js@^1.9.7:
+  version "1.9.18"
+  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.9.18.tgz#443f2ccb8c59eca55f6c2a9e968aeed5bd75fe7b"
+  integrity sha512-6u/trrEytXFTc7HLxKsZhboZNdwcKag6rYzpAV2SPKy45qImvlkwbne3mYi2zdXEFg7KPdX7iiwhkdmCB94+4Q==
+
 lines-and-columns@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
@@ -6408,6 +6427,11 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
+
+validator@^13.5.2:
+  version "13.6.0"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-13.6.0.tgz#1e71899c14cdc7b2068463cb24c1cc16f6ec7059"
+  integrity sha512-gVgKbdbHgtxpRyR8K0O6oFZPhhB5tT1jeEHZR0Znr9Svg03U0+r9DXWMrnRAB+HtCStDQKlaIZm42tVsVjqtjg==
 
 vary@^1, vary@~1.1.2:
   version "1.1.2"
