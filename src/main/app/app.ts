@@ -12,7 +12,7 @@ export class Application {
     try {
       await validateOrReject(env);
 
-      this.httpServer = new HttpServer(null, {
+      this.httpServer = new HttpServer({
         port: env.httpPort,
       });
       this.httpServer.start();

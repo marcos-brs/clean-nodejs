@@ -9,12 +9,9 @@ import { expressLogger } from './logger';
 export class HttpServer {
   protected app?: express.Application;
 
-  protected container: /* AppContainer */ any;
-
   protected config: HttpServerConfig;
 
-  constructor(container: /* AppContainer */ any, config: HttpServerConfig) {
-    this.container = container;
+  constructor(config: HttpServerConfig) {
     this.config = config;
   }
 
