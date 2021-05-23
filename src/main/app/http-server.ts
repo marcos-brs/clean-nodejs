@@ -4,6 +4,7 @@ import cors from 'cors';
 import { TesteController } from '../../presentation/controllers/teste-controller';
 import { BaseController, HttpServerConfig } from '../../presentation/protocols';
 import { ExpressControllerAdapter } from '../adapters';
+import { expressLogger } from './logger';
 
 export class HttpServer {
   protected app?: express.Application;
@@ -96,6 +97,8 @@ export class HttpServer {
       });
     });
 
+    app.use(expressLogger.onError.bind(expressLogger));
+    app.use(expressLogger.onSuccess.bind(expressLogger));
     app.use('/tagma-food/v1', router);
 
     app.use(
@@ -105,7 +108,7 @@ export class HttpServer {
         res: express.Response,
         next: express.NextFunction
       ) => {
-        next();
+        next(new Error('Not Found'));
       }
     );
 
@@ -113,13 +116,4 @@ export class HttpServer {
 
     this.app = app;
   }
-}
-function cors(): import('express-serve-static-core').RequestHandler<
-  import('express-serve-static-core').ParamsDictionary,
-  any,
-  any,
-  import('qs').ParsedQs,
-  Record<string, any>
-> {
-  throw new Error('Function not implemented.');
 }
