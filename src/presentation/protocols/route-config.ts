@@ -1,8 +1,8 @@
-import { IController } from './controller';
+import { Controller } from './controller';
 
 export interface RouteConfig {
   method: string;
   path: string;
-  func: IController;
+  func: Controller;
   middlewares: Function[];
 }

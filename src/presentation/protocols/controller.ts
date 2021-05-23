@@ -1,7 +1,7 @@
 import { HttpResponse } from './http';
 import { RouteConfig } from './route-config';
 
-export interface IController<T = any> {
+export interface Controller<T = any> {
   (request: T): Promise<HttpResponse>;
 }
 
