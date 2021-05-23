@@ -1,17 +1,17 @@
 import express from 'express';
+import helmet from 'helmet';
+import cors from 'cors';
 import { TesteController } from '../../presentation/controllers/teste-controller';
 import { BaseController, HttpServerConfig } from '../../presentation/protocols';
 import { ExpressControllerAdapter } from '../adapters';
+import { expressLogger } from './logger';
 
 export class HttpServer {
   protected app?: express.Application;
 
-  protected container: /* AppContainer */ any;
-
   protected config: HttpServerConfig;
 
-  constructor(container: /* AppContainer */ any, config: HttpServerConfig) {
-    this.container = container;
+  constructor(config: HttpServerConfig) {
     this.config = config;
   }
 
@@ -39,6 +39,8 @@ export class HttpServer {
     const app = express();
 
     /* Express utilites */
+    app.use(helmet());
+    app.use(cors());
 
     const router = express.Router();
 
@@ -92,6 +94,8 @@ export class HttpServer {
       });
     });
 
+    app.use(expressLogger.onError.bind(expressLogger));
+    app.use(expressLogger.onSuccess.bind(expressLogger));
     app.use('/tagma-food/v1', router);
 
     app.use(
@@ -101,7 +105,7 @@ export class HttpServer {
         res: express.Response,
         next: express.NextFunction
       ) => {
-        next();
+        next(new Error('Not Found'));
       }
     );
 
