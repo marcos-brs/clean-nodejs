@@ -4,5 +4,10 @@
   "main": "index.js",
   "repository": "git@github.com:zerocoolbr/clean-nodejs.git",
   "author": "Marcos Santana <brmarcossantanabr@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "husky": "^6.0.0"
+  }
 }
