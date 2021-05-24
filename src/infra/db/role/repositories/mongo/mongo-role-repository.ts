@@ -11,4 +11,12 @@ export class MongoRoleRepository
     super();
     this.ormRepository = getModelForClass(RoleSchema);
   }
+
+  public async findByRole(role: string): Promise<Role | null> {
+    const roleData = await this.ormRepository.findOne({ role });
+
+    if (roleData === null) return null;
+
+    return roleData.toObject() as Role;
+  }
 }

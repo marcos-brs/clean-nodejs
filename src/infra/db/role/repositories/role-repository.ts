@@ -2,4 +2,6 @@ import { BaseRepository } from '../../../../shared/infra/db/repositories/base-re
 import { Role } from '../../../../domain/models/role';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface RoleRepository extends BaseRepository<Role> {}
+export interface RoleRepository extends BaseRepository<Role> {
+  findByRole(role: string): Promise<Role | null>;
+}

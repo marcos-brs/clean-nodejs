@@ -9,4 +9,14 @@ export class MemoryRoleRepository
   constructor() {
     super();
   }
+
+  public async findByRole(role: string): Promise<Role | null> {
+    const foundData = this.model.find(data => data.role === role);
+
+    if (!foundData) {
+      return null;
+    }
+
+    return foundData;
+  }
 }
