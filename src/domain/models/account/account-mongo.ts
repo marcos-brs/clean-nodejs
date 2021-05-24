@@ -22,6 +22,9 @@ export class AccountSchema extends Base<string> {
   @prop()
   public email: string;
 
+  @prop()
+  public password: string;
+
   @prop({ ref: RoleSchema })
   public roles: Ref<RoleSchema>[];
 
