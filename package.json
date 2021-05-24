@@ -49,6 +49,7 @@
     "joi": "^17.4.0",
     "mongoose": "^5.10.18",
     "reflect-metadata": "^0.1.13",
-    "tsyringe": "^4.5.0"
+    "tsyringe": "^4.5.0",
+    "uuidv4": "^6.2.8"
   }
 }
