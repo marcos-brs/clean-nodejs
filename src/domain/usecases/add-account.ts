@@ -6,6 +6,7 @@ export namespace AddAccount {
   export type Params = {
     name: string;
     email: string;
+    roles: string[];
     password: string;
   };
 
