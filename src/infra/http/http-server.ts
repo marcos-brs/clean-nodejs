@@ -1,7 +1,7 @@
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
-import { TesteController } from '../../presentation/controllers/teste-controller';
+import { AccountController } from '../../presentation/controllers/account-controller';
 import { BaseController } from '../../presentation/protocols';
 import {
   ExpressControllerAdapter,
@@ -31,7 +31,7 @@ export class HttpServer {
   }
 
   protected loadControllers(): BaseController[] {
-    return [new TesteController()];
+    return [new AccountController()];
   }
 
   start(): void {
