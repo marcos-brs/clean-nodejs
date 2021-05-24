@@ -2,15 +2,26 @@ import { validateOrReject, ValidationError } from 'class-validator';
 import { HttpServer } from './http-server';
 import { logger } from './logger';
 import { env } from '../env';
+import { MongoDB } from './mongodb';
 
 export class Application {
   protected httpServer?: HttpServer;
+
+  protected mongoDB?: MongoDB;
 
   protected worker?: Worker;
 
   async start(): Promise<void> {
     try {
       await validateOrReject(env);
+
+      this.mongoDB = new MongoDB(
+        env.mongoHost,
+        env.mongoPort,
+        env.mongoDatabase
+      );
+      this.mongoDB.connect();
+      logger.info(`MongoDB connected in port ${env.mongoPort}`);
 
       this.httpServer = new HttpServer({
         port: env.httpPort,
