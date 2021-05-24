@@ -5,6 +5,7 @@ import { RoleSchema } from '../role';
 @modelOptions({
   schemaOptions: {
     _id: false,
+    collection: 'account',
     toJSON: {
       transform(doc, ret) {
         delete ret.__v;

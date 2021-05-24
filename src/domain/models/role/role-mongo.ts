@@ -4,6 +4,7 @@ import { Base } from '@typegoose/typegoose/lib/defaultClasses';
 @modelOptions({
   schemaOptions: {
     _id: false,
+    collection: 'role',
     toJSON: {
       transform(doc, ret) {
         ret.id = ret._id;
