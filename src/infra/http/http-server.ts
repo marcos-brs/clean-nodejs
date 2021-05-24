@@ -2,12 +2,13 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import { TesteController } from '../../presentation/controllers/teste-controller';
-import { BaseController, HttpServerConfig } from '../../presentation/protocols';
+import { BaseController } from '../../presentation/protocols';
 import {
   ExpressControllerAdapter,
   ExpressMiddlewareAdapter,
-} from '../adapters';
-import { expressLogger } from './logger';
+} from '../../main/adapters';
+import { expressLogger } from '../../main/app/logger';
+import { HttpServerConfig } from './protocols/http-server-config';
 
 export class HttpServer {
   protected app?: express.Application;
