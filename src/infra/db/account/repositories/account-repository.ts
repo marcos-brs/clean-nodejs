@@ -2,4 +2,4 @@ import { BaseRepository } from '../../../../shared/infra/db/repositories/base-re
 import { Account } from '../../../../domain/models/account';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export default interface AccountRepository extends BaseRepository<Account> {}
+export interface AccountRepository extends BaseRepository<Account> {}
