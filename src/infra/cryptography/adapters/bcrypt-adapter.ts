@@ -1,8 +1,13 @@
 import bcrypt from 'bcrypt';
-import { HashComparer, Hasher } from '../protocols';
+import { env } from '../../../main/env';
+import { Hasher } from '../protocols';
 
-export class BcryptAdapter implements Hasher, HashComparer {
-  constructor(private readonly salt: number) {}
+export class BcryptAdapter implements Hasher {
+  private readonly salt: number;
+
+  constructor() {
+    this.salt = env.cryptographySalt;
+  }
 
   async hash(plaintext: string): Promise<string> {
     return bcrypt.hash(plaintext, this.salt);

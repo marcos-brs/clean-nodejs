@@ -7,6 +7,10 @@ export class EnvValidator {
   @IsNotEmpty()
   httpPort: number;
 
+  @IsInt()
+  @IsNotEmpty()
+  cryptographySalt: number;
+
   @IsString()
   @IsNotEmpty()
   mongoHost: string;
