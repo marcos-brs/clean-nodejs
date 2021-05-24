@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { HttpRequest, IMiddleware } from '../../presentation/protocols';
+import { HttpRequest, Middleware } from '../../presentation/protocols';
 
-export const ExpressMiddlewareAdapter = (middleware: IMiddleware) => {
+export const ExpressMiddlewareAdapter = (middleware: Middleware) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const httpRequest: HttpRequest = {
       body: req.body,
@@ -12,6 +12,10 @@ export const ExpressMiddlewareAdapter = (middleware: IMiddleware) => {
     const httpResponse = await middleware(httpRequest);
     if (httpResponse.statusCode >= 200 && httpResponse.statusCode <= 299) {
       next();
+    } else {
+      res.status(httpResponse.statusCode).json({
+        error: httpResponse.body,
+      });
     }
   };
 };

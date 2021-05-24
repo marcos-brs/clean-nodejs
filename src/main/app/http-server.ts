@@ -3,7 +3,10 @@ import helmet from 'helmet';
 import cors from 'cors';
 import { TesteController } from '../../presentation/controllers/teste-controller';
 import { BaseController, HttpServerConfig } from '../../presentation/protocols';
-import { ExpressControllerAdapter } from '../adapters';
+import {
+  ExpressControllerAdapter,
+  ExpressMiddlewareAdapter,
+} from '../adapters';
 import { expressLogger } from './logger';
 
 export class HttpServer {
@@ -41,6 +44,8 @@ export class HttpServer {
     /* Express utilites */
     app.use(helmet());
     app.use(cors());
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
 
     const router = express.Router();
 
@@ -68,7 +73,9 @@ export class HttpServer {
       controller.routeConfigs.forEach(routeConfig => {
         const fullPath = [controller.path, routeConfig.path].join('');
         const jobs = [
-          ...routeConfig.middlewares,
+          ...routeConfig.middlewares.map(middleware =>
+            ExpressMiddlewareAdapter(middleware)
+          ),
           ExpressControllerAdapter(routeConfig.func).bind(controller),
         ];
 

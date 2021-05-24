@@ -1,5 +1,7 @@
+import { HttpResponse, Middleware } from '../protocols';
+
 export const createRouteDecorator = (method: string) =>
-  function (path: string, middlewares: Function[] = []): Function {
+  function (path: string, middlewares: Middleware[] = []): Function {
     return function (target: any, propertyName: string) {
       if (!target.routeConfigs) {
         target.routeConfigs = [];
