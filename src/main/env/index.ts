@@ -8,7 +8,7 @@ const props = {
     (process.env.HTTP_PORT && parseInt(process.env.HTTP_PORT, 10)) || 8080,
   mongoHost: process.env.MONGO_HOST || '',
   mongoPort:
-    (process.env.MONGO_PORT && parseInt(process.env.MONGO_PORT, 10)) || 8080,
+    (process.env.MONGO_PORT && parseInt(process.env.MONGO_PORT, 10)) || 27017,
   mongoDatabase: process.env.MONGO_DATABASE || '',
 };
 
