@@ -9,4 +9,14 @@ export class MemoryAccountRepository
   constructor() {
     super();
   }
+
+  public async findByEmail(email: string): Promise<Account | null> {
+    const foundData = this.model.find(data => data.email === email);
+
+    if (!foundData) {
+      return null;
+    }
+
+    return foundData;
+  }
 }

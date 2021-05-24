@@ -11,4 +11,12 @@ export class MongoAccountRepository
     super();
     this.ormRepository = getModelForClass(AccountSchema);
   }
+
+  public async findByEmail(email: string): Promise<Account | null> {
+    const account = await this.ormRepository.findOne({ email });
+
+    if (account === null) return null;
+
+    return account.toObject() as Account;
+  }
 }
