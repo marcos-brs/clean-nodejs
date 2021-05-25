@@ -1,5 +1,5 @@
 import { injectable, inject } from 'tsyringe';
-import { AddRole } from '../../../domain/usecases/add-role';
+import { AddRole } from '../../../domain/usecases';
 import { Controller, Post } from '../../decorators';
 import { BadRequest } from '../../errors';
 import { badRequest, ok } from '../../helper';

@@ -3,8 +3,8 @@ import {
   DeleteAccount,
   ListAccounts,
   UpdateAccount,
+  AddAccount,
 } from '../../../domain/usecases';
-import { AddAccount } from '../../../domain/usecases/add-account';
 import { Controller, Delete, Get, Post, Put } from '../../decorators';
 import { BadRequest } from '../../errors';
 import { badRequest, ok } from '../../helper';

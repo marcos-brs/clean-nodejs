@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { injectable, inject } from 'tsyringe';
-import { AccountRepository } from '../../infra/db/account/repositories/account-repository';
-import { DeleteAccount } from '../../domain/usecases';
+import { AccountRepository } from '../../../infra/db/account/repositories/account-repository';
+import { DeleteAccount } from '../../../domain/usecases';
 
 @injectable()
 export class DbDeleteAccount implements DeleteAccount {
