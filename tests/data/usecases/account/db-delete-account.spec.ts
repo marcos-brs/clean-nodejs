@@ -2,7 +2,7 @@ import { DbDeleteAccount } from '@/data/usecases/account';
 import { MemoryAccountRepository } from '@/infra/db/account/repositories/memory/memory-account-repository';
 
 describe('DbDeleteAccount', () => {
-  it('Should add an account to db', async () => {
+  it('Should delete an account from db', async () => {
     const accountRepository = new MemoryAccountRepository();
     const dbDeleteAccount = new DbDeleteAccount(accountRepository);
 
