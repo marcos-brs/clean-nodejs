@@ -2,10 +2,6 @@ import { DbDeleteAccount } from '@/data/usecases/account';
 import { MemoryAccountRepository } from '@/infra/db/account/repositories/memory/memory-account-repository';
 
 describe('DbDeleteAccount', () => {
-  beforeAll(() => {
-    jest.resetModules();
-    process.env.CRYPTOGRAPHY_SALT = '12';
-  });
   it('Should add an account to db', async () => {
     const accountRepository = new MemoryAccountRepository();
     const dbDeleteAccount = new DbDeleteAccount(accountRepository);
