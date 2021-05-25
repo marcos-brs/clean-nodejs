@@ -1,20 +1,23 @@
 {
   "compilerOptions": {
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "outDir": "release",
-    "module": "commonjs",
     "target": "es2019",
-    "esModuleInterop": true,
-    "sourceMap": true,
+    "module": "commonjs",
+    "outDir": "release",
     "rootDirs": ["src", "tests"],
+    "strict": true,
+    "strictPropertyInitialization": false,
     "baseUrl": "src",
+    "allowJs": true,
     "paths": {
       "@/tests/*": ["../tests/*"],
       "@/*": ["*"]
     },
-    "typeRoots": ["@types"]
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["jest", "node"]
   },
-  "include": ["src", "tests"],
   "exclude": ["node_modules", "coverage", "**/*.config.js"]
 }
