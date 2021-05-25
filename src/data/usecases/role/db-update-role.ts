@@ -13,8 +13,11 @@ export class DbUpdateRole implements UpdateRole {
   async update({ id, ...data }: UpdateRole.Params): Promise<UpdateRole.Result> {
     const role = await this.roleRepository.findById(id);
 
-    Object.assign(role, { ...data });
+    if (role) {
+      Object.assign(role, { ...data });
 
-    return this.roleRepository.update(role);
+      return this.roleRepository.update(role);
+    }
+    return false;
   }
 }
