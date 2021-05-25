@@ -8,12 +8,14 @@ import { AccountRepository } from '../../infra/db/account/repositories/account-r
 import {
   AddAccount,
   AddRole,
+  DeleteAccount,
   ListAccounts,
   UpdateAccount,
 } from '../../domain/usecases';
 import {
   DbAddAccount,
   DbAddRole,
+  DbDeleteAccount,
   DbListAccounts,
   DbUpdateAccount,
 } from '../../data/usecases';
@@ -29,6 +31,8 @@ container.registerSingleton<RoleRepository>(
 
 container.registerSingleton<AddAccount>('AddAccount', DbAddAccount);
 container.registerSingleton<AddRole>('AddRole', DbAddRole);
+
+container.registerSingleton<DeleteAccount>('DeleteAccount', DbDeleteAccount);
 
 container.registerSingleton<ListAccounts>('ListAccounts', DbListAccounts);
 
