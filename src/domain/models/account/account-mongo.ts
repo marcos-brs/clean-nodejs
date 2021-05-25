@@ -1,5 +1,6 @@
 import { modelOptions, prop, Ref } from '@typegoose/typegoose';
 import { Base } from '@typegoose/typegoose/lib/defaultClasses';
+import { string } from 'joi';
 import { RoleSchema } from '../role';
 
 @modelOptions({
@@ -8,6 +9,9 @@ import { RoleSchema } from '../role';
     collection: 'account',
     toJSON: {
       transform(doc, ret) {
+        ret.id = ret._id;
+
+        delete ret._id;
         delete ret.__v;
       },
     },
@@ -26,7 +30,7 @@ export class AccountSchema extends Base<string> {
   @prop()
   public password: string;
 
-  @prop({ ref: RoleSchema })
+  @prop({ ref: RoleSchema, type: String })
   public roles: Ref<RoleSchema>[];
 
   @prop()
