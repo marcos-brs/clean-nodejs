@@ -2,12 +2,12 @@ import 'reflect-metadata';
 import { v4 as uuidv4 } from 'uuid';
 import { injectable, inject } from 'tsyringe';
 import { Hasher } from '../../infra/cryptography/protocols';
-import { AddAccount } from '../../domain/usecases/add-account';
 import { AccountRepository } from '../../infra/db/account/repositories/account-repository';
 import { RoleRepository } from '../../infra/db/role/repositories/role-repository';
+import { UpdateAccount } from '../../domain/usecases';
 
 @injectable()
-export class DbAddAccount implements AddAccount {
+export class DbUpdateAccount implements UpdateAccount {
   constructor(
     @inject('Hasher')
     private hasher: Hasher,
@@ -17,14 +17,19 @@ export class DbAddAccount implements AddAccount {
     private roleRepository: RoleRepository
   ) {}
 
-  async add(account: AddAccount.Params): Promise<AddAccount.Result> {
-    if (await this.accountRepository.findByEmail(account.email)) return false;
+  async update({
+    id,
+    ...data
+  }: UpdateAccount.Params): Promise<UpdateAccount.Result> {
+    const account = await this.accountRepository.findById(id);
 
-    const { name, email, password, roles } = account;
+    if (!account) {
+      return false;
+    }
 
-    if (roles.length > 0) {
+    if (data.roles && data.roles.length > 0) {
       const rolesSchema = await Promise.all(
-        roles.map(async role => {
+        data.roles.map(async role => {
           const findRole = await this.roleRepository.findById(role);
           return findRole;
         })
@@ -37,19 +42,13 @@ export class DbAddAccount implements AddAccount {
       if (!allRolesExists) return false;
     }
 
-    const hashedPassword = await this.hasher.hash(password);
+    Object.assign(account, { ...data });
 
-    await this.accountRepository.create({
-      _id: uuidv4(),
-      name,
-      email,
-      password: hashedPassword,
-      roles: roles as string[],
-      created_at: new Date(),
-      updated_at: new Date(),
-      deleted_at: null,
-    });
+    if (data.password) {
+      const hashedPassword = await this.hasher.hash(data.password);
+      Object.assign(account, { password: hashedPassword });
+    }
 
-    return true;
+    return this.accountRepository.update(account);
   }
 }

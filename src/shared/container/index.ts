@@ -5,8 +5,18 @@ import { RoleRepository } from '../../infra/db/role/repositories/role-repository
 import { MongoRoleRepository } from '../../infra/db/role/repositories/mongo/mongo-role-repository';
 import { MongoAccountRepository } from '../../infra/db/account/repositories/mongo/mongo-account-repository';
 import { AccountRepository } from '../../infra/db/account/repositories/account-repository';
-import { AddAccount, AddRole, ListAccounts } from '../../domain/usecases';
-import { DbAddAccount, DbAddRole, DbListAccounts } from '../../data/usecases';
+import {
+  AddAccount,
+  AddRole,
+  ListAccounts,
+  UpdateAccount,
+} from '../../domain/usecases';
+import {
+  DbAddAccount,
+  DbAddRole,
+  DbListAccounts,
+  DbUpdateAccount,
+} from '../../data/usecases';
 
 container.registerSingleton<AccountRepository>(
   'AccountRepository',
@@ -21,5 +31,7 @@ container.registerSingleton<AddAccount>('AddAccount', DbAddAccount);
 container.registerSingleton<AddRole>('AddRole', DbAddRole);
 
 container.registerSingleton<ListAccounts>('ListAccounts', DbListAccounts);
+
+container.registerSingleton<UpdateAccount>('UpdateAccount', DbUpdateAccount);
 
 container.registerSingleton<Hasher>('Hasher', BcryptAdapter);
