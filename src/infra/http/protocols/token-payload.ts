@@ -1,4 +1,4 @@
 export type TokenPayload = {
-  account_id: string;
+  id: string;
   roles: string[];
 };

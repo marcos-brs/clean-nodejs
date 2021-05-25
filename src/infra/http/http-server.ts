@@ -2,6 +2,7 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import { container } from 'tsyringe';
+import { addTokenToRequest } from '../../presentation/middlewares/add-token-to-request';
 import { RoleController } from '../../presentation/controllers/role';
 import { AccountController } from '../../presentation/controllers/account';
 import { AuthController } from '../../presentation/controllers/auth';
@@ -111,6 +112,7 @@ export class HttpServer {
 
     app.use(expressLogger.onError.bind(expressLogger));
     app.use(expressLogger.onSuccess.bind(expressLogger));
+    app.use(ExpressMiddlewareAdapter(addTokenToRequest));
     app.use('/zero-api/v1', router);
 
     app.use(

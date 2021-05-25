@@ -5,7 +5,7 @@ import { HttpRequest, HttpResponse, Middleware } from '../protocols';
 
 export const validatorMiddleware =
   (schema: Joi.Schema): Middleware =>
-  (httpRequest: HttpRequest): HttpResponse => {
+  async (httpRequest: HttpRequest): Promise<HttpResponse> => {
     const validation = schema.validate(httpRequest, {
       abortEarly: false,
       stripUnknown: true,

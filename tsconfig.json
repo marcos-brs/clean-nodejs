@@ -12,8 +12,9 @@
     "paths": {
       "@/tests/*": ["../tests/*"],
       "@/*": ["*"]
-    }
+    },
+    "typeRoots": ["@types"]
   },
   "include": ["src", "tests"],
-  "exclude": []
+  "exclude": ["node_modules", "coverage", "**/*.config.js"]
 }
