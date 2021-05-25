@@ -19,7 +19,8 @@ export class DbAddAccount implements AddAccount {
 
     const { name, email, password, roles } = account;
     const hashedPassword = await this.hasher.hash(password);
-    const success = await this.accountRepository.create({
+
+    await this.accountRepository.create({
       _id: uuid(),
       name,
       email,
