@@ -4,6 +4,7 @@ import cors from 'cors';
 import { container } from 'tsyringe';
 import { RoleController } from '../../presentation/controllers/role';
 import { AccountController } from '../../presentation/controllers/account';
+import { AuthController } from '../../presentation/controllers/auth';
 import { BaseController } from '../../presentation/protocols';
 import {
   ExpressControllerAdapter,
@@ -35,6 +36,7 @@ export class HttpServer {
   protected loadControllers(): BaseController[] {
     return [
       container.resolve(AccountController),
+      container.resolve(AuthController),
       container.resolve(RoleController),
     ];
   }

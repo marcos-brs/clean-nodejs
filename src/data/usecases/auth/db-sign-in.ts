@@ -21,7 +21,9 @@ export class DbSignIn implements SignIn {
   async auth({ email, password }: SignIn.Params): Promise<SignIn.Result> {
     const account = await this.accountRepository.findByEmail(email);
 
-    if (!account) {
+    console.log(account);
+
+    if (account) {
       const passwordIsCorrect = await this.hasher.compare(
         password,
         account.password
@@ -32,12 +34,16 @@ export class DbSignIn implements SignIn {
           account.roles.map(role => this.roleRepository.findById(role))
         );
 
+        console.log(passwordIsCorrect);
+
         const rolesNames = roles.map(role => role.role);
 
         const payload = {
           id: account._id,
           roles: rolesNames,
         };
+
+        console.log(payload);
 
         const accessToken = await this.encrypter.encrypt(payload);
 
