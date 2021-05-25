@@ -2,8 +2,8 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import { container } from 'tsyringe';
-import { RoleController } from '../../presentation/controllers/role-controller';
-import { AccountController } from '../../presentation/controllers/account-controller';
+import { RoleController } from '../../presentation/controllers/role';
+import { AccountController } from '../../presentation/controllers/account';
 import { BaseController } from '../../presentation/protocols';
 import {
   ExpressControllerAdapter,

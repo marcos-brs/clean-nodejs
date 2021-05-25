@@ -12,7 +12,6 @@ export class DbAddRole implements AddRole {
   ) {}
 
   async add({ role }: AddRole.Params): Promise<AddRole.Result> {
-    console.log('role:', role);
     if (await this.roleRepository.findByRole(role)) return false;
 
     await this.roleRepository.create({

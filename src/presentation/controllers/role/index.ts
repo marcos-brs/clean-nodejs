@@ -1,11 +1,11 @@
 import { injectable, inject } from 'tsyringe';
-import { AddRole } from '../../domain/usecases/add-role';
-import { Controller, Get, Post } from '../decorators';
-import { BadRequest } from '../errors';
-import { badRequest, ok } from '../helper';
-import { validatorMiddleware } from '../middlewares/validator-middleware';
-import { BaseController, HttpRequest, HttpResponse } from '../protocols';
-import { createRoleSchema } from './schemas/create-role-schema';
+import { AddRole } from '../../../domain/usecases/add-role';
+import { Controller, Post } from '../../decorators';
+import { BadRequest } from '../../errors';
+import { badRequest, ok } from '../../helper';
+import { validatorMiddleware } from '../../middlewares/validator-middleware';
+import { BaseController, HttpRequest, HttpResponse } from '../../protocols';
+import { createRoleSchema } from './schemas';
 
 @injectable()
 @Controller('/role')
