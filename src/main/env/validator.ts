@@ -13,6 +13,10 @@ export class EnvValidator {
 
   @IsString()
   @IsNotEmpty()
+  jwtSecret: string;
+
+  @IsString()
+  @IsNotEmpty()
   mongoHost: string;
 
   @IsInt()
