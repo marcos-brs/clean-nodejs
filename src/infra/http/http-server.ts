@@ -2,6 +2,7 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import { container } from 'tsyringe';
+import setupSwagger from '@/main/docs/swagger';
 import { errorHandlerMiddleware } from '../../presentation/middlewares/error-middleware';
 import { NotFoundError } from '../../presentation/errors';
 import { addTokenToRequest } from '../../presentation/middlewares/add-token-to-request';
@@ -114,6 +115,8 @@ export class HttpServer {
     });
 
     const encrypter = container.resolve<Encrypter>('Encrypter');
+
+    setupSwagger(app);
 
     app.use(expressLogger.onError.bind(expressLogger));
     app.use(expressLogger.onSuccess.bind(expressLogger));
