@@ -1,7 +1,7 @@
 export type Role = {
   _id: string;
   role: string;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt: Date | null;
+  created_at: Date;
+  updated_at: Date;
+  deleted_at: Date | null;
 };
