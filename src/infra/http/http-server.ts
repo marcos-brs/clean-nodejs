@@ -1,6 +1,7 @@
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
+import { container } from 'tsyringe';
 import { AccountController } from '../../presentation/controllers/account-controller';
 import { BaseController } from '../../presentation/protocols';
 import {
@@ -31,7 +32,7 @@ export class HttpServer {
   }
 
   protected loadControllers(): BaseController[] {
-    return [new AccountController()];
+    return [container.resolve(AccountController)];
   }
 
   start(): void {
@@ -77,7 +78,7 @@ export class HttpServer {
           ...routeConfig.middlewares.map(middleware =>
             ExpressMiddlewareAdapter(middleware)
           ),
-          ExpressControllerAdapter(routeConfig.func).bind(controller),
+          ExpressControllerAdapter(routeConfig.func.bind(controller)),
         ];
 
         switch (routeConfig.method) {

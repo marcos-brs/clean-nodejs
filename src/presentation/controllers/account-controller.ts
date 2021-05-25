@@ -1,5 +1,5 @@
-import { container } from 'tsyringe';
-import { DbAddAccount } from '../../data/usecases/db-add-account';
+import { injectable, inject } from 'tsyringe';
+import { AddAccount } from '../../domain/usecases/add-account';
 import { Controller, Get, Post } from '../decorators';
 import { BadRequest } from '../errors';
 import { badRequest, ok } from '../helper';
@@ -7,12 +7,19 @@ import { validatorMiddleware } from '../middlewares/validator-middleware';
 import { BaseController, HttpRequest, HttpResponse } from '../protocols';
 import { createAccountSchema } from './schemas/create-account-schema';
 
+@injectable()
 @Controller('/account')
 export class AccountController extends BaseController {
+  constructor(
+    @inject('AddAccount')
+    private addAccount: AddAccount
+  ) {
+    super();
+  }
+
   @Post('/', [validatorMiddleware(createAccountSchema)])
   async createAccount(req: HttpRequest): Promise<HttpResponse> {
-    const dbAddAccount = container.resolve(DbAddAccount);
-    const response = await dbAddAccount.add(req.body);
+    const response = await this.addAccount.add(req.body);
 
     if (!response)
       return badRequest(
