@@ -9,15 +9,21 @@ import {
   AddAccount,
   AddRole,
   DeleteAccount,
+  DeleteRole,
   ListAccounts,
+  ListRoles,
   UpdateAccount,
+  UpdateRole,
 } from '../../domain/usecases';
 import {
   DbAddAccount,
   DbAddRole,
   DbDeleteAccount,
+  DbDeleteRole,
   DbListAccounts,
+  DbListRoles,
   DbUpdateAccount,
+  DbUpdateRole,
 } from '../../data/usecases';
 
 container.registerSingleton<AccountRepository>(
@@ -33,9 +39,12 @@ container.registerSingleton<AddAccount>('AddAccount', DbAddAccount);
 container.registerSingleton<AddRole>('AddRole', DbAddRole);
 
 container.registerSingleton<DeleteAccount>('DeleteAccount', DbDeleteAccount);
+container.registerSingleton<DeleteRole>('DeleteRole', DbDeleteRole);
 
 container.registerSingleton<ListAccounts>('ListAccounts', DbListAccounts);
+container.registerSingleton<ListRoles>('ListRoles', DbListRoles);
 
 container.registerSingleton<UpdateAccount>('UpdateAccount', DbUpdateAccount);
+container.registerSingleton<UpdateRole>('UpdateRole', DbUpdateRole);
 
 container.registerSingleton<Hasher>('Hasher', BcryptAdapter);
