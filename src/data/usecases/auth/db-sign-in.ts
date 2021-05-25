@@ -32,7 +32,7 @@ export class DbSignIn implements SignIn {
           account.roles.map(role => this.roleRepository.findById(role))
         );
 
-        const rolesNames = roles.map(role => role.role);
+        const rolesNames = roles.map(role => role?.role);
 
         const payload = {
           id: account._id,
@@ -44,6 +44,6 @@ export class DbSignIn implements SignIn {
         return { accessToken };
       }
     }
-    return null;
+    return { accessToken: '' };
   }
 }
