@@ -1,5 +1,6 @@
 import { container } from 'tsyringe';
-import { Hasher } from '../../infra/cryptography/protocols';
+import { JwtAdapter } from '../../infra/cryptography/adapters/jwt-adapter';
+import { Encrypter, Hasher } from '../../infra/cryptography/protocols';
 import { BcryptAdapter } from '../../infra/cryptography/adapters';
 import { RoleRepository } from '../../infra/db/role/repositories/role-repository';
 import { MongoRoleRepository } from '../../infra/db/role/repositories/mongo/mongo-role-repository';
@@ -48,3 +49,4 @@ container.registerSingleton<UpdateAccount>('UpdateAccount', DbUpdateAccount);
 container.registerSingleton<UpdateRole>('UpdateRole', DbUpdateRole);
 
 container.registerSingleton<Hasher>('Hasher', BcryptAdapter);
+container.registerSingleton<Encrypter>('Encrypter', JwtAdapter);
