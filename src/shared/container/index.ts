@@ -13,6 +13,7 @@ import {
   DeleteRole,
   ListAccounts,
   ListRoles,
+  SignIn,
   UpdateAccount,
   UpdateRole,
 } from '../../domain/usecases';
@@ -23,6 +24,7 @@ import {
   DbDeleteRole,
   DbListAccounts,
   DbListRoles,
+  DbSignIn,
   DbUpdateAccount,
   DbUpdateRole,
 } from '../../data/usecases';
@@ -47,6 +49,8 @@ container.registerSingleton<ListRoles>('ListRoles', DbListRoles);
 
 container.registerSingleton<UpdateAccount>('UpdateAccount', DbUpdateAccount);
 container.registerSingleton<UpdateRole>('UpdateRole', DbUpdateRole);
+
+container.registerSingleton<SignIn>('SignIn', DbSignIn);
 
 container.registerSingleton<Hasher>('Hasher', BcryptAdapter);
 container.registerSingleton<Encrypter>('Encrypter', JwtAdapter);
