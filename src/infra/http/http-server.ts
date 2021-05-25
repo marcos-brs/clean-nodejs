@@ -15,6 +15,7 @@ import {
 } from '../../main/adapters';
 import { expressLogger } from '../../main/app/logger';
 import { HttpServerConfig } from './protocols/http-server-config';
+import { Encrypter } from '../cryptography/protocols';
 
 export class HttpServer {
   protected app?: express.Application;
@@ -112,9 +113,11 @@ export class HttpServer {
       });
     });
 
+    const encrypter = container.resolve<Encrypter>('Encrypter');
+
     app.use(expressLogger.onError.bind(expressLogger));
     app.use(expressLogger.onSuccess.bind(expressLogger));
-    app.use(ExpressMiddlewareAdapter(addTokenToRequest));
+    app.use(ExpressMiddlewareAdapter(addTokenToRequest(encrypter)));
     app.use('/zero-api/v1', router);
 
     app.use(

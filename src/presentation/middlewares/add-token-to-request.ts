@@ -36,30 +36,29 @@ function badFormat(decodedPayload: any): decodedPayload is TokenPayload {
   );
 }
 
-export async function addTokenToRequest(
-  request: HttpRequest
-): Promise<HttpResponse> {
-  const encrypter = container.resolve<Encrypter>('Encrypter');
-  try {
-    const token = getTokenFromHeader(request);
-    const decoded = await encrypter.decrypt(token);
+export const addTokenToRequest =
+  (encrypter: Encrypter) =>
+  async (request: HttpRequest): Promise<HttpResponse> => {
+    try {
+      const token = getTokenFromHeader(request);
+      const decoded = await encrypter.decrypt(token);
 
-    if (badFormat(decoded)) {
-      throw new Unauthorized('BadPayloadFormat', 'Bad Payload format');
+      if (badFormat(decoded)) {
+        throw new Unauthorized('BadPayloadFormat', 'Bad Payload format');
+      }
+
+      const { id, roles } = decoded as TokenPayload;
+
+      return ok({
+        authUser: {
+          id,
+          roles,
+        },
+      });
+    } catch (err) {
+      if (err instanceof Unauthorized) {
+        if (err?.code === 'EmptyJWT') return ok({});
+      }
+      return unauthorized(err);
     }
-
-    const { id, roles } = decoded as TokenPayload;
-
-    return ok({
-      authUser: {
-        id,
-        roles,
-      },
-    });
-  } catch (err) {
-    if (err instanceof Unauthorized) {
-      if (err?.code === 'EmptyJWT') return ok({});
-    }
-    return unauthorized(err);
-  }
-}
+  };
