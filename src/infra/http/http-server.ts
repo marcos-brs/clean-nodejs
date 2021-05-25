@@ -2,6 +2,7 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import { container } from 'tsyringe';
+import { RoleController } from '../../presentation/controllers/role-controller';
 import { AccountController } from '../../presentation/controllers/account-controller';
 import { BaseController } from '../../presentation/protocols';
 import {
@@ -32,7 +33,10 @@ export class HttpServer {
   }
 
   protected loadControllers(): BaseController[] {
-    return [container.resolve(AccountController)];
+    return [
+      container.resolve(AccountController),
+      container.resolve(RoleController),
+    ];
   }
 
   start(): void {

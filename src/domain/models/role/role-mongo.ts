@@ -20,7 +20,7 @@ export class RoleSchema extends Base<string> {
   public _id: string;
 
   @prop()
-  public name: string;
+  public role: string;
 
   @prop()
   public created_at: Date;
