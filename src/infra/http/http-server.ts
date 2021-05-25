@@ -2,6 +2,8 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import { container } from 'tsyringe';
+import { errorHandlerMiddleware } from '../../presentation/middlewares/error-middleware';
+import { NotFoundError } from '../../presentation/errors';
 import { addTokenToRequest } from '../../presentation/middlewares/add-token-to-request';
 import { RoleController } from '../../presentation/controllers/role';
 import { AccountController } from '../../presentation/controllers/account';
@@ -122,10 +124,11 @@ export class HttpServer {
         res: express.Response,
         next: express.NextFunction
       ) => {
-        next(new Error('Not Found'));
+        next(new NotFoundError());
       }
     );
 
+    app.use(errorHandlerMiddleware);
     app.listen(this.config.port);
 
     this.app = app;

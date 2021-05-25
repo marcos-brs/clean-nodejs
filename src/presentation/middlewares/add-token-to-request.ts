@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 import { Encrypter } from '../../infra/cryptography/protocols';
 import { TokenPayload } from '../../infra/http/protocols';
 import { Unauthorized } from '../errors';
-import { ok } from '../helper';
+import { ok, unauthorized } from '../helper';
 import { HttpRequest, HttpResponse } from '../protocols';
 
 function getTokenFromHeader(request: HttpRequest) {
@@ -60,6 +60,6 @@ export async function addTokenToRequest(
     if (err instanceof Unauthorized) {
       if (err?.code === 'EmptyJWT') return ok({});
     }
-    throw err /* new Unauthorized('Unauthorized', 'Unauthorized') */;
+    return unauthorized(err);
   }
 }
