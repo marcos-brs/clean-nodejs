@@ -1,5 +1,4 @@
 import 'reflect-metadata';
-import { container } from 'tsyringe';
 import { Encrypter } from '../../infra/cryptography/protocols';
 import { TokenPayload } from '../../infra/http/protocols';
 import { Unauthorized } from '../errors';
