@@ -20,14 +20,6 @@ export const errorHandlerMiddleware = (
     return next();
   }
 
-  if (err.code && err.code === 'ER_DUP_ENTRY') {
-    res.status(409).send({
-      code: 'DUPLICATED_RESOURCE',
-      message: 'Already exists resource with received unique keys',
-    });
-    return next();
-  }
-
   res.status(500).send({
     code: 'UNEXPECTED_ERROR',
     message: 'Internal server failure',
