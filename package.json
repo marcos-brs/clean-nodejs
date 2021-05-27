@@ -6,6 +6,7 @@
   "author": "Marcos Santana <brmarcossantanabr@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "start": "node dist/main/app/index.js",
     "dev": "ts-node-dev -r tsconfig-paths/register --transpile-only --ignore-watch node_modules --inspect=0.0.0.0:3352 ./src/index.ts",
     "build": "rm -rf release && tsc -p tsconfig-build.json",
     "lint": "eslint --fix 'src/**/*.ts' 'test/**/*.ts'",
