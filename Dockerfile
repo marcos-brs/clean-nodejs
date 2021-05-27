@@ -3,5 +3,5 @@ WORKDIR /usr/src/service
 COPY . .
 RUN npm install
 RUN npm run build
-EXPOSE 3335
+EXPOSE 8080
 CMD ["npm", "run", "start"]
