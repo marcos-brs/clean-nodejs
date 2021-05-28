@@ -1,8 +1,6 @@
 import { IsInt, IsNotEmpty, IsString } from 'class-validator';
 
 export class EnvValidator {
-  knexConfig: any;
-
   @IsInt()
   @IsNotEmpty()
   httpPort: number;
