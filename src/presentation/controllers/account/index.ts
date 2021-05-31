@@ -6,8 +6,7 @@ import {
   AddAccount,
 } from '../../../domain/usecases';
 import { Controller, Delete, Get, Post, Put } from '../../decorators';
-import { BadRequest } from '../../../shared/errors';
-import { badRequest, ok } from '../../helper';
+import { ok } from '../../helper';
 import { validatorMiddleware } from '../../middlewares/validator-middleware';
 import { BaseController, HttpRequest, HttpResponse } from '../../protocols';
 import {
@@ -37,45 +36,26 @@ export class AccountController extends BaseController {
   async listAccounts(req: HttpRequest): Promise<HttpResponse> {
     const response = await this.listAllAccounts.list();
 
-    if (!response)
-      return badRequest(
-        new BadRequest('message.error', 'Problema ao listar contas')
-      );
-
-    return ok({ response });
+    return ok(response);
   }
 
   @Post('/', [validatorMiddleware(createAccountSchema)])
   async createAccount(req: HttpRequest): Promise<HttpResponse> {
     const response = await this.addAnAccount.add(req.body);
 
-    if (!response)
-      return badRequest(new BadRequest('message.error', 'Problema ao conta'));
-
-    return ok({ success: response });
+    return ok(response);
   }
 
   @Put('/', [validatorMiddleware(updateAccountSchema)])
   async updateAccount(req: HttpRequest): Promise<HttpResponse> {
     const response = await this.updateAnAccount.update(req.body);
 
-    if (!response)
-      return badRequest(
-        new BadRequest('message.error', 'Problema ao atualizar conta')
-      );
-
-    return ok({ success: response });
+    return ok(response);
   }
 
   @Delete('/', [validatorMiddleware(deleteAccountSchema)])
   async deleteAccount(req: HttpRequest): Promise<HttpResponse> {
     const response = await this.deleteAnAccount.delete(req.body);
-
-    if (!response)
-      return badRequest(
-        new BadRequest('message.error', 'Problema ao deletar conta')
-      );
-
     return ok({ success: response });
   }
 }

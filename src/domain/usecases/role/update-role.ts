@@ -1,3 +1,5 @@
+import { Role } from '@/domain/models/role';
+
 export interface UpdateRole {
   update: (role: UpdateRole.Params) => Promise<UpdateRole.Result>;
 }
@@ -8,5 +10,5 @@ export namespace UpdateRole {
     role: string;
   };
 
-  export type Result = boolean;
+  export type Result = Role;
 }

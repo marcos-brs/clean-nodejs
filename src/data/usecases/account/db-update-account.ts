@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import { injectable, inject } from 'tsyringe';
+import { AccountNotFound, RoleNotFound } from '@/domain/errors';
 import { Hasher } from '../../../infra/cryptography/protocols';
 import { AccountRepository } from '../../../infra/db/account/repositories/account-repository';
 import { RoleRepository } from '../../../infra/db/role/repositories/role-repository';
@@ -23,7 +24,7 @@ export class DbUpdateAccount implements UpdateAccount {
     const account = await this.accountRepository.findById(id);
 
     if (!account) {
-      return false;
+      throw new AccountNotFound();
     }
 
     if (data.roles && data.roles.length > 0) {
@@ -38,7 +39,9 @@ export class DbUpdateAccount implements UpdateAccount {
         .map(role => !!role)
         .reduce(role => role);
 
-      if (!allRolesExists) return false;
+      if (!allRolesExists) {
+        throw new RoleNotFound();
+      }
     }
 
     Object.assign(account, { ...data });
@@ -48,6 +51,8 @@ export class DbUpdateAccount implements UpdateAccount {
       Object.assign(account, { password: hashedPassword });
     }
 
-    return this.accountRepository.update(account);
+    this.accountRepository.update(account);
+
+    return account;
   }
 }

@@ -1,3 +1,5 @@
+import { Account } from '@/domain/models/account';
+
 export interface UpdateAccount {
   update: (account: UpdateAccount.Params) => Promise<UpdateAccount.Result>;
 }
@@ -11,5 +13,5 @@ export namespace UpdateAccount {
     password?: string;
   };
 
-  export type Result = boolean;
+  export type Result = Account;
 }

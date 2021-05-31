@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import { injectable, inject } from 'tsyringe';
+import { RoleNotFound } from '@/domain/errors';
 import { RoleRepository } from '../../../infra/db/role/repositories/role-repository';
 import { UpdateRole } from '../../../domain/usecases';
 
@@ -13,11 +14,14 @@ export class DbUpdateRole implements UpdateRole {
   async update({ id, ...data }: UpdateRole.Params): Promise<UpdateRole.Result> {
     const role = await this.roleRepository.findById(id);
 
-    if (role) {
-      Object.assign(role, { ...data });
-
-      return this.roleRepository.update(role);
+    if (!role) {
+      throw new RoleNotFound();
     }
-    return false;
+
+    Object.assign(role, { ...data });
+
+    await this.roleRepository.update(role);
+
+    return role;
   }
 }

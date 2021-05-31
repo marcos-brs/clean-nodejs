@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import { v4 as uuidv4 } from 'uuid';
 import { injectable, inject } from 'tsyringe';
+import { RoleAlreadyRegistered } from '@/domain/errors';
 import { RoleRepository } from '../../../infra/db/role/repositories/role-repository';
 import { AddRole } from '../../../domain/usecases';
 
@@ -12,9 +13,11 @@ export class DbAddRole implements AddRole {
   ) {}
 
   async add({ role }: AddRole.Params): Promise<AddRole.Result> {
-    if (await this.roleRepository.findByRole(role)) return false;
+    if (await this.roleRepository.findByRole(role)) {
+      throw new RoleAlreadyRegistered();
+    }
 
-    await this.roleRepository.create({
+    const newRole = await this.roleRepository.create({
       _id: uuidv4(),
       role,
       created_at: new Date(),
@@ -22,6 +25,6 @@ export class DbAddRole implements AddRole {
       deleted_at: null,
     });
 
-    return true;
+    return newRole;
   }
 }

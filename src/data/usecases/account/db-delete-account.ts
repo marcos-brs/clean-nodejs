@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import { injectable, inject } from 'tsyringe';
+import { AccountNotFound } from '@/domain/errors';
 import { AccountRepository } from '../../../infra/db/account/repositories/account-repository';
 import { DeleteAccount } from '../../../domain/usecases';
 
@@ -13,9 +14,11 @@ export class DbDeleteAccount implements DeleteAccount {
   async delete({ id }: DeleteAccount.Params): Promise<DeleteAccount.Result> {
     const account = await this.accountRepository.findById(id);
 
-    if (!account) return false;
+    if (!account) {
+      throw new AccountNotFound();
+    }
 
-    this.accountRepository.delete(id);
+    await this.accountRepository.delete(id);
 
     return true;
   }

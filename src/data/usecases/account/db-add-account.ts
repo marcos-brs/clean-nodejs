@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import { v4 as uuidv4 } from 'uuid';
 import { injectable, inject } from 'tsyringe';
+import { EmailAlreadyRegistered, RoleNotFound } from '@/domain/errors';
 import { Hasher } from '../../../infra/cryptography/protocols';
 import { AddAccount } from '../../../domain/usecases';
 import { AccountRepository } from '../../../infra/db/account/repositories/account-repository';
@@ -18,7 +19,9 @@ export class DbAddAccount implements AddAccount {
   ) {}
 
   async add(account: AddAccount.Params): Promise<AddAccount.Result> {
-    if (await this.accountRepository.findByEmail(account.email)) return false;
+    if (await this.accountRepository.findByEmail(account.email)) {
+      throw new EmailAlreadyRegistered();
+    }
 
     const { name, email, password, roles } = account;
 
@@ -34,12 +37,14 @@ export class DbAddAccount implements AddAccount {
         .map(role => !!role)
         .reduce(role => role);
 
-      if (!allRolesExists) return false;
+      if (!allRolesExists) {
+        throw new RoleNotFound();
+      }
     }
 
     const hashedPassword = await this.hasher.hash(password);
 
-    await this.accountRepository.create({
+    const newAccount = await this.accountRepository.create({
       _id: uuidv4(),
       name,
       email,
@@ -50,6 +55,6 @@ export class DbAddAccount implements AddAccount {
       deleted_at: null,
     });
 
-    return true;
+    return newAccount;
   }
 }

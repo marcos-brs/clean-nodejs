@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import { injectable, inject } from 'tsyringe';
+import { RoleNotFound } from '@/domain/errors';
 import { RoleRepository } from '../../../infra/db/role/repositories/role-repository';
 import { DeleteRole } from '../../../domain/usecases';
 
@@ -13,9 +14,11 @@ export class DbDeleteRole implements DeleteRole {
   async delete({ id }: DeleteRole.Params): Promise<DeleteRole.Result> {
     const role = await this.roleRepository.findById(id);
 
-    if (!role) return false;
+    if (!role) {
+      throw new RoleNotFound();
+    }
 
-    this.roleRepository.delete(id);
+    await this.roleRepository.delete(id);
 
     return true;
   }

@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import { injectable, inject } from 'tsyringe';
+import { AccountNotFound, InvalidPassword } from '@/domain/errors';
 import { RoleRepository } from '../../../infra/db/role/repositories/role-repository';
 import { AccountRepository } from '../../../infra/db/account/repositories/account-repository';
 import { Encrypter, Hasher } from '../../../infra/cryptography/protocols';
@@ -21,29 +22,32 @@ export class DbSignIn implements SignIn {
   async auth({ email, password }: SignIn.Params): Promise<SignIn.Result> {
     const account = await this.accountRepository.findByEmail(email);
 
-    if (account) {
-      const passwordIsCorrect = await this.hasher.compare(
-        password,
-        account.password
-      );
-
-      if (passwordIsCorrect) {
-        const roles = await Promise.all(
-          account.roles.map(role => this.roleRepository.findById(role))
-        );
-
-        const rolesNames = roles.map(role => role?.role);
-
-        const payload = {
-          id: account._id,
-          roles: rolesNames,
-        };
-
-        const accessToken = await this.encrypter.encrypt(payload);
-
-        return { accessToken };
-      }
+    if (!account) {
+      throw new AccountNotFound();
     }
-    return { accessToken: '' };
+
+    const passwordIsCorrect = await this.hasher.compare(
+      password,
+      account.password
+    );
+
+    if (!passwordIsCorrect) {
+      throw new InvalidPassword();
+    }
+
+    const roles = await Promise.all(
+      account.roles.map(role => this.roleRepository.findById(role))
+    );
+
+    const rolesNames = roles.map(role => role?.role);
+
+    const payload = {
+      id: account._id,
+      roles: rolesNames,
+    };
+
+    const accessToken = await this.encrypter.encrypt(payload);
+
+    return { accessToken };
   }
 }
