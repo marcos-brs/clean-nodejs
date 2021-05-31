@@ -1,11 +1,11 @@
 import 'reflect-metadata';
 import { v4 as uuidv4 } from 'uuid';
 import { injectable, inject } from 'tsyringe';
+import { AddAccount } from '@/domain/usecases/account';
 import { EmailAlreadyRegistered, RoleNotFound } from '@/domain/errors';
-import { Hasher } from '../../../infra/cryptography/protocols';
-import { AddAccount } from '../../../domain/usecases';
-import { AccountRepository } from '../../../infra/db/account/repositories/account-repository';
-import { RoleRepository } from '../../../infra/db/role/repositories/role-repository';
+import { Hasher } from '@/infra/cryptography/protocols';
+import { AccountRepository } from '@/infra/db/account/repositories/account-repository';
+import { RoleRepository } from '@/infra/db/role/repositories/role-repository';
 
 @injectable()
 export class DbAddAccount implements AddAccount {

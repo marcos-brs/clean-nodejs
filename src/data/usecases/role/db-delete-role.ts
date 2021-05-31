@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 import { injectable, inject } from 'tsyringe';
+import { DeleteRole } from '@/domain/usecases/role';
 import { RoleNotFound } from '@/domain/errors';
-import { RoleRepository } from '../../../infra/db/role/repositories/role-repository';
-import { DeleteRole } from '../../../domain/usecases';
+import { RoleRepository } from '@/infra/db/role/repositories/role-repository';
 
 @injectable()
 export class DbDeleteRole implements DeleteRole {

@@ -1,9 +1,9 @@
 import 'reflect-metadata';
 import { v4 as uuidv4 } from 'uuid';
 import { injectable, inject } from 'tsyringe';
+import { AddRole } from '@/domain/usecases/role';
 import { RoleAlreadyRegistered } from '@/domain/errors';
-import { RoleRepository } from '../../../infra/db/role/repositories/role-repository';
-import { AddRole } from '../../../domain/usecases';
+import { RoleRepository } from '@/infra/db/role/repositories/role-repository';
 
 @injectable()
 export class DbAddRole implements AddRole {

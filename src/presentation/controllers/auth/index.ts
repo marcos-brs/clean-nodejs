@@ -1,5 +1,5 @@
 import { injectable, inject } from 'tsyringe';
-import { SignIn } from '../../../domain/usecases';
+import { SignIn } from '../../../domain/usecases/auth';
 import { Controller, Post } from '../../decorators';
 import { ok } from '../../helper';
 import { validatorMiddleware } from '../../middlewares/validator-middleware';

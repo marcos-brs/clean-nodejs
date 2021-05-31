@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { injectable, inject } from 'tsyringe';
-import { ListAccounts } from '../../../domain/usecases';
-import { AccountRepository } from '../../../infra/db/account/repositories/account-repository';
+import { ListAccounts } from '@/domain/usecases/account';
+import { AccountRepository } from '@/infra/db/account/repositories/account-repository';
 
 @injectable()
 export class DbListAccounts implements ListAccounts {

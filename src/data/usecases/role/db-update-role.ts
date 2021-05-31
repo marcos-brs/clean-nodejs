@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 import { injectable, inject } from 'tsyringe';
 import { RoleNotFound } from '@/domain/errors';
-import { RoleRepository } from '../../../infra/db/role/repositories/role-repository';
-import { UpdateRole } from '../../../domain/usecases';
+import { UpdateRole } from '@/domain/usecases/role';
+import { RoleRepository } from '@/infra/db/role/repositories/role-repository';
 
 @injectable()
 export class DbUpdateRole implements UpdateRole {

@@ -4,7 +4,7 @@ import {
   DeleteRole,
   ListRoles,
   UpdateRole,
-} from '../../../domain/usecases';
+} from '../../../domain/usecases/role';
 import { Controller, Delete, Get, Post, Put } from '../../decorators';
 import { ok } from '../../helper';
 import { validatorMiddleware } from '../../middlewares/validator-middleware';

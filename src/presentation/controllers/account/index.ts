@@ -4,7 +4,7 @@ import {
   ListAccounts,
   UpdateAccount,
   AddAccount,
-} from '../../../domain/usecases';
+} from '../../../domain/usecases/account';
 import { Controller, Delete, Get, Post, Put } from '../../decorators';
 import { ok } from '../../helper';
 import { validatorMiddleware } from '../../middlewares/validator-middleware';
