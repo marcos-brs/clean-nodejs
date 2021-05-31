@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import { logger } from '../../main/app/logger';
-import { AppException } from '../../shared/errors/app-exception';
+import { AppException } from '@/shared/errors/app-exception';
+import { logger } from './logger';
 
-export const errorHandlerMiddleware = (
+export const errorHandler = (
   err: any,
   req: Request,
   res: Response,

@@ -10,15 +10,13 @@ import { AccountController } from '@/presentation/controllers/account';
 import { AuthController } from '@/presentation/controllers/auth';
 import { RoleController } from '@/presentation/controllers/role';
 import { Encrypter } from '@/infra/cryptography/protocols';
-import {
-  addTokenToRequest,
-  errorHandlerMiddleware,
-} from '@/presentation/middlewares';
+import { addTokenToRequest } from '@/presentation/middlewares';
 import {
   ExpressControllerAdapter,
   ExpressMiddlewareAdapter,
 } from '../adapters';
 import { expressLogger } from './logger';
+import { errorHandler } from './error-handler';
 
 export class HttpServer {
   protected app?: express.Application;
@@ -136,7 +134,7 @@ export class HttpServer {
       }
     );
 
-    app.use(errorHandlerMiddleware);
+    app.use(errorHandler);
     app.listen(this.config.port);
 
     this.app = app;
