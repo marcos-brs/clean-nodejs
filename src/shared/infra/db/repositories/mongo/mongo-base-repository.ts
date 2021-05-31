@@ -14,9 +14,11 @@ export class MongoBaseRepository<T extends { _id: string }, G>
   }
 
   public async findById(id: string): Promise<T | null> {
-    const account = (await this.ormRepository.findById(id)).toObject() as T;
+    const account = await this.ormRepository.findById(id);
 
-    return account;
+    if (account === null) return null;
+
+    return account.toObject() as T;
   }
 
   public async findAll(): Promise<T[]> {
