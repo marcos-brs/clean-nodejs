@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { injectable, inject } from 'tsyringe';
 import { SignIn } from '@/domain/usecases/auth';
 import { AccountNotFound, InvalidPassword } from '@/domain/errors';

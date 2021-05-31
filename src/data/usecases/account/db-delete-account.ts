@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { injectable, inject } from 'tsyringe';
 import { DeleteAccount } from '@/domain/usecases/account';
 import { AccountNotFound } from '@/domain/errors';

@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { injectable, inject } from 'tsyringe';
 import { RoleNotFound } from '@/domain/errors';
 import { UpdateRole } from '@/domain/usecases/role';

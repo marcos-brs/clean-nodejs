@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { injectable, inject } from 'tsyringe';
 import { ListRoles } from '@/domain/usecases/role';
 import { RoleRepository } from '@/infra/db/role/repositories/role-repository';

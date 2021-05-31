@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { v4 as uuidv4 } from 'uuid';
 import { injectable, inject } from 'tsyringe';
 import { AddAccount } from '@/domain/usecases/account';

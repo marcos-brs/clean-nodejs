@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { Encrypter } from '../../infra/cryptography/protocols';
 import { TokenPayload } from '../../infra/http/protocols';
 import { Unauthorized } from '../../shared/errors';
