@@ -1,5 +1,5 @@
 import { validateOrReject, ValidationError } from 'class-validator';
-import { HttpServer } from '../../infra/http/http-server';
+import { HttpServer } from './http-server';
 import { logger } from './logger';
 import { env } from '../env';
 import { MongoDB } from './mongodb';

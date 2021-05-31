@@ -4,19 +4,21 @@ import cors from 'cors';
 import { container } from 'tsyringe';
 import setupSwagger from '@/main/docs/swagger';
 import { NotFoundError } from '@/presentation/errors';
-import { errorHandlerMiddleware } from '../../presentation/middlewares/error-middleware';
-import { addTokenToRequest } from '../../presentation/middlewares/add-token-to-request';
-import { RoleController } from '../../presentation/controllers/role';
-import { AccountController } from '../../presentation/controllers/account';
-import { AuthController } from '../../presentation/controllers/auth';
-import { BaseController } from '../../presentation/protocols';
+import { HttpServerConfig } from '@/infra/http/protocols';
+import { BaseController } from '@/presentation/protocols';
+import { AccountController } from '@/presentation/controllers/account';
+import { AuthController } from '@/presentation/controllers/auth';
+import { RoleController } from '@/presentation/controllers/role';
+import { Encrypter } from '@/infra/cryptography/protocols';
+import {
+  addTokenToRequest,
+  errorHandlerMiddleware,
+} from '@/presentation/middlewares';
 import {
   ExpressControllerAdapter,
   ExpressMiddlewareAdapter,
-} from '../../main/adapters';
-import { expressLogger } from '../../main/app/logger';
-import { HttpServerConfig } from './protocols/http-server-config';
-import { Encrypter } from '../cryptography/protocols';
+} from '../adapters';
+import { expressLogger } from './logger';
 
 export class HttpServer {
   protected app?: express.Application;
