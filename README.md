@@ -10,7 +10,7 @@
 
 > A simple clean NodeJS API
 
-### If you use Dockerr
+## If you use Docker
 
 ### Requirements
 
@@ -27,7 +27,7 @@ an alias command. After installing Docker, run the following command to prepare 
   make install
 ```
 
-#### Running
+### Running
 
 When ready, you can run the application with this command:
 
