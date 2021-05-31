@@ -1,4 +1,11 @@
 import { container } from 'tsyringe';
+import {
+  AddRole,
+  DeleteRole,
+  ListRoles,
+  UpdateRole,
+} from '@/domain/usecases/role';
+import { SignIn } from '@/domain/usecases/auth';
 import { JwtAdapter } from '../../infra/cryptography/adapters/jwt-adapter';
 import { Encrypter, Hasher } from '../../infra/cryptography/protocols';
 import { BcryptAdapter } from '../../infra/cryptography/adapters';
@@ -8,15 +15,10 @@ import { MongoAccountRepository } from '../../infra/db/account/repositories/mong
 import { AccountRepository } from '../../infra/db/account/repositories/account-repository';
 import {
   AddAccount,
-  AddRole,
   DeleteAccount,
-  DeleteRole,
   ListAccounts,
-  ListRoles,
-  SignIn,
   UpdateAccount,
-  UpdateRole,
-} from '../../domain/usecases';
+} from '../../domain/usecases/account';
 import {
   DbAddAccount,
   DbAddRole,
