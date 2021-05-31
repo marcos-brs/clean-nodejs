@@ -1,4 +1,4 @@
-export abstract class CodedError extends Error {
+export abstract class AppException extends Error {
   code: string;
 
   statusCode: number;

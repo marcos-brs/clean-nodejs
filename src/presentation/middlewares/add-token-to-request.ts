@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { Encrypter } from '../../infra/cryptography/protocols';
 import { TokenPayload } from '../../infra/http/protocols';
-import { Unauthorized } from '../errors';
+import { Unauthorized } from '../../shared/errors';
 import { ok, unauthorized } from '../helper';
 import { HttpRequest, HttpResponse } from '../protocols';
 

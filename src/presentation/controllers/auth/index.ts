@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 import { SignIn } from '../../../domain/usecases';
 import { Controller, Delete, Get, Post, Put } from '../../decorators';
-import { BadRequest } from '../../errors';
+import { BadRequest } from '../../../shared/errors';
 import { badRequest, ok } from '../../helper';
 import { validatorMiddleware } from '../../middlewares/validator-middleware';
 import { BaseController, HttpRequest, HttpResponse } from '../../protocols';
