@@ -6,7 +6,7 @@
   "author": "Marcos Santana <brmarcossantanabr@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node dist/main/app/index.js",
+    "start": "node release/index.js",
     "dev": "ts-node-dev -r tsconfig-paths/register --transpile-only --ignore-watch node_modules --inspect=0.0.0.0:3352 ./src/index.ts",
     "build": "rm -rf release && tsc -p tsconfig-build.json",
     "lint": "eslint --fix 'src/**/*.ts' 'tests/**/*.ts'",
@@ -47,6 +47,7 @@
     "@somosphi/logger": "^1.6.0",
     "@typegoose/typegoose": "^7.6.0",
     "@types/mongoose": "<=5.10.18",
+    "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
     "bunyan-format": "^0.2.1",
     "class-validator": "^0.13.1",
@@ -56,10 +57,14 @@
     "helmet": "^4.6.0",
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
+    "module-alias": "^2.2.2",
     "mongoose": "<=5.10.18",
     "reflect-metadata": "^0.1.13",
     "swagger-ui-express": "^4.1.6",
     "tsyringe": "^4.5.0",
     "uuid": "^8.3.2"
+  },
+  "_moduleAliases": {
+    "@": "release"
   }
 }
