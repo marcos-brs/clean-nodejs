@@ -6,6 +6,8 @@ import {
   UpdateRole,
 } from '@/domain/usecases/role';
 import { SignIn } from '@/domain/usecases/auth';
+import { Uuid } from '@/infra/uuid/protocols';
+import { Uuidv4Adapter } from '@/infra/uuid/adapters';
 import { JwtAdapter } from '../../infra/cryptography/adapters/jwt-adapter';
 import { Encrypter, Hasher } from '../../infra/cryptography/protocols';
 import { BcryptAdapter } from '../../infra/cryptography/adapters';
@@ -56,3 +58,4 @@ container.registerSingleton<SignIn>('SignIn', DbSignIn);
 
 container.registerSingleton<Hasher>('Hasher', BcryptAdapter);
 container.registerSingleton<Encrypter>('Encrypter', JwtAdapter);
+container.registerSingleton<Uuid>('Uuid', Uuidv4Adapter);
