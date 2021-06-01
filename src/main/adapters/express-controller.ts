@@ -2,7 +2,11 @@ import { NextFunction, Request, Response } from 'express';
 import { HttpRequest, Controller } from '../../presentation/protocols';
 
 export const ExpressControllerAdapter = (controller: Controller) => {
-  return async (req: Request, res: Response, next: NextFunction) => {
+  return async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> => {
     try {
       const httpRequest: HttpRequest = {
         body: req.body,

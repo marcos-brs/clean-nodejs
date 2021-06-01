@@ -22,7 +22,7 @@ export abstract class AppException extends Error {
     Error.captureStackTrace(this);
   }
 
-  toJSON() {
+  toJSON(): any {
     return {
       message: this.message,
       code: this.code,
