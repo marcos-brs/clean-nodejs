@@ -7,8 +7,8 @@ const props = {
   httpPort:
     (process.env.HTTP_PORT && parseInt(process.env.HTTP_PORT, 10)) || 8080,
   cryptographySalt:
-    (process.env.CRIPTOGRAPHY_SALT &&
-      parseInt(process.env.CRIPTOGRAPHY_SALT, 2)) ||
+    (process.env.CRYPTOGRAPHY_SALT &&
+      parseInt(process.env.CRYPTOGRAPHY_SALT, 2)) ||
     12,
   jwtSecret: process.env.JWT_SECRET || '',
   mongoHost: process.env.MONGO_HOST || '',
