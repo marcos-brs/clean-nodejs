@@ -1,7 +1,7 @@
 import { getModelForClass } from '@typegoose/typegoose';
-import { MongoBaseRepository } from '../../../../../shared/infra/db/repositories/mongo/mongo-base-repository';
-import { Account, AccountSchema } from '../../../../../domain/models/account';
-import { AccountRepository } from '../account-repository';
+import { Account, AccountSchema } from '@/domain/models/account';
+import { MongoBaseRepository } from '@/shared/infra/db/repositories';
+import { AccountRepository } from './account-repository';
 
 export class MongoAccountRepository
   extends MongoBaseRepository<Account, AccountSchema>

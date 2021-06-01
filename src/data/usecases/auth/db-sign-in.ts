@@ -2,8 +2,8 @@ import { injectable, inject } from 'tsyringe';
 import { SignIn } from '@/domain/usecases/auth';
 import { AccountNotFound, InvalidPassword } from '@/domain/errors';
 import { Encrypter, Hasher } from '@/infra/cryptography/protocols';
-import { AccountRepository } from '@/infra/db/account/repositories/account-repository';
-import { RoleRepository } from '@/infra/db/role/repositories/role-repository';
+import { AccountRepository } from '@/infra/db/account/repositories';
+import { RoleRepository } from '@/infra/db/role/repositories';
 
 @injectable()
 export class DbSignIn implements SignIn {

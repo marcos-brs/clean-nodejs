@@ -1,5 +1,5 @@
 import { DbDeleteAccount } from '@/data/usecases/account';
-import { MemoryAccountRepository } from '@/infra/db/account/repositories/memory/memory-account-repository';
+import { MemoryAccountRepository } from '@/infra/db/account/repositories';
 
 describe('DbDeleteAccount', () => {
   it('Should delete an account from db', async () => {

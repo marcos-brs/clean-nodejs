@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 import { AddRole } from '@/domain/usecases/role';
 import { RoleAlreadyRegistered } from '@/domain/errors';
-import { RoleRepository } from '@/infra/db/role/repositories/role-repository';
+import { RoleRepository } from '@/infra/db/role/repositories';
 import { Uuid } from '@/infra/uuid/protocols';
 
 @injectable()

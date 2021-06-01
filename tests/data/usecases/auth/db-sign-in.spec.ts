@@ -1,8 +1,8 @@
 import { DbSignIn } from '@/data/usecases/auth';
 import { BcryptAdapter } from '@/infra/cryptography/adapters';
 import { JwtAdapter } from '@/infra/cryptography/adapters/jwt-adapter';
-import { MemoryAccountRepository } from '@/infra/db/account/repositories/memory/memory-account-repository';
-import { MemoryRoleRepository } from '@/infra/db/role/repositories/memory/memory-role-repository';
+import { MemoryAccountRepository } from '@/infra/db/account/repositories';
+import { MemoryRoleRepository } from '@/infra/db/role/repositories';
 import { env } from '@/main/env';
 
 describe('DbSignIn', () => {

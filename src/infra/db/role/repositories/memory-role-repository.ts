@@ -1,6 +1,6 @@
-import { MemoryBaseRepository } from '../../../../../shared/infra/db/repositories/memory/memory-base-repository';
-import { RoleRepository } from '../role-repository';
-import { Role } from '../../../../../domain/models/role';
+import { Role } from '@/domain/models/role';
+import { MemoryBaseRepository } from '@/shared/infra/db/repositories';
+import { RoleRepository } from './role-repository';
 
 export class MemoryRoleRepository
   extends MemoryBaseRepository<Role>

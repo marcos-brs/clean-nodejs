@@ -2,8 +2,8 @@ import { injectable, inject } from 'tsyringe';
 import { AddAccount } from '@/domain/usecases/account';
 import { EmailAlreadyRegistered, RoleNotFound } from '@/domain/errors';
 import { Hasher } from '@/infra/cryptography/protocols';
-import { AccountRepository } from '@/infra/db/account/repositories/account-repository';
-import { RoleRepository } from '@/infra/db/role/repositories/role-repository';
+import { AccountRepository } from '@/infra/db/account/repositories';
+import { RoleRepository } from '@/infra/db/role/repositories';
 import { Uuid } from '@/infra/uuid/protocols';
 
 @injectable()

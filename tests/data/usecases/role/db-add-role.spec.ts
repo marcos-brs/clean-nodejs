@@ -1,5 +1,5 @@
 import { DbAddRole } from '@/data/usecases/role';
-import { MemoryRoleRepository } from '@/infra/db/role/repositories/memory/memory-role-repository';
+import { MemoryRoleRepository } from '@/infra/db/role/repositories';
 
 describe('DbAddRole', () => {
   it('Should add an role to db', async () => {

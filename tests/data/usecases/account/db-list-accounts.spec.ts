@@ -1,5 +1,5 @@
 import { DbListAccounts } from '@/data/usecases/account';
-import { MemoryAccountRepository } from '@/infra/db/account/repositories/memory/memory-account-repository';
+import { MemoryAccountRepository } from '@/infra/db/account/repositories';
 
 describe('DbListAccounts', () => {
   it('Should list all accounts', async () => {

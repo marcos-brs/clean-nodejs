@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 import { ListRoles } from '@/domain/usecases/role';
-import { RoleRepository } from '@/infra/db/role/repositories/role-repository';
+import { RoleRepository } from '@/infra/db/role/repositories';
 
 @injectable()
 export class DbListRoles implements ListRoles {

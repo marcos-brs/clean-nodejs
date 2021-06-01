@@ -1,7 +1,7 @@
 import { DbAddAccount } from '@/data/usecases/account';
 import { BcryptAdapter } from '@/infra/cryptography/adapters';
-import { MemoryAccountRepository } from '@/infra/db/account/repositories/memory/memory-account-repository';
-import { MemoryRoleRepository } from '@/infra/db/role/repositories/memory/memory-role-repository';
+import { MemoryAccountRepository } from '@/infra/db/account/repositories';
+import { MemoryRoleRepository } from '@/infra/db/role/repositories';
 
 describe('DbAddAccount', () => {
   beforeAll(() => {

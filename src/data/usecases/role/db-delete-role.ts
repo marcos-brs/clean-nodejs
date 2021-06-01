@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 import { DeleteRole } from '@/domain/usecases/role';
 import { RoleNotFound } from '@/domain/errors';
-import { RoleRepository } from '@/infra/db/role/repositories/role-repository';
+import { RoleRepository } from '@/infra/db/role/repositories';
 
 @injectable()
 export class DbDeleteRole implements DeleteRole {

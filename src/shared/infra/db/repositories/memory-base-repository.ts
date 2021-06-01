@@ -1,4 +1,4 @@
-import { BaseRepository } from '../base-repository';
+import { BaseRepository } from './base-repository';
 
 export class MemoryBaseRepository<T extends { _id: string }>
   implements BaseRepository<T>

@@ -8,10 +8,14 @@ import {
 import { SignIn } from '@/domain/usecases/auth';
 import { Uuid } from '@/infra/uuid/protocols';
 import { Uuidv4Adapter } from '@/infra/uuid/adapters';
-import { AccountRepository } from '@/infra/db/account/repositories/account-repository';
-import { MongoAccountRepository } from '@/infra/db/account/repositories/mongo/mongo-account-repository';
-import { RoleRepository } from '@/infra/db/role/repositories/role-repository';
-import { MongoRoleRepository } from '@/infra/db/role/repositories/mongo/mongo-role-repository';
+import {
+  AccountRepository,
+  MongoAccountRepository,
+} from '@/infra/db/account/repositories';
+import {
+  RoleRepository,
+  MongoRoleRepository,
+} from '@/infra/db/role/repositories';
 import {
   AddAccount,
   DeleteAccount,

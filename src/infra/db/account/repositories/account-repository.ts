@@ -1,5 +1,5 @@
-import { BaseRepository } from '../../../../shared/infra/db/repositories/base-repository';
-import { Account } from '../../../../domain/models/account';
+import { Account } from '@/domain/models/account';
+import { BaseRepository } from '@/shared/infra/db/repositories';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AccountRepository extends BaseRepository<Account> {

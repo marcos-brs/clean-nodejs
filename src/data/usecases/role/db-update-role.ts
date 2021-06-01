@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 import { RoleNotFound } from '@/domain/errors';
 import { UpdateRole } from '@/domain/usecases/role';
-import { RoleRepository } from '@/infra/db/role/repositories/role-repository';
+import { RoleRepository } from '@/infra/db/role/repositories';
 
 @injectable()
 export class DbUpdateRole implements UpdateRole {

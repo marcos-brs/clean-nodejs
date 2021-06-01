@@ -1,6 +1,6 @@
 import { ReturnModelType } from '@typegoose/typegoose';
 import { FilterQuery } from 'mongoose';
-import { BaseRepository } from '../base-repository';
+import { BaseRepository } from './base-repository';
 
 export class MongoBaseRepository<T extends { _id: string }, G>
   implements BaseRepository<T>

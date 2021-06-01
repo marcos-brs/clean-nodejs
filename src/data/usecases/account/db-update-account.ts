@@ -2,8 +2,8 @@ import { injectable, inject } from 'tsyringe';
 import { AccountNotFound, RoleNotFound } from '@/domain/errors';
 import { UpdateAccount } from '@/domain/usecases/account';
 import { Hasher } from '@/infra/cryptography/protocols';
-import { AccountRepository } from '@/infra/db/account/repositories/account-repository';
-import { RoleRepository } from '@/infra/db/role/repositories/role-repository';
+import { AccountRepository } from '@/infra/db/account/repositories';
+import { RoleRepository } from '@/infra/db/role/repositories';
 
 @injectable()
 export class DbUpdateAccount implements UpdateAccount {
