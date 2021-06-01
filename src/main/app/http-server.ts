@@ -14,7 +14,7 @@ import { addTokenToRequest } from '@/presentation/middlewares';
 import {
   ExpressControllerAdapter,
   ExpressMiddlewareAdapter,
-} from '../adapters';
+} from '@/presentation/adapters';
 import { expressLogger } from './logger';
 import { errorHandler } from './error-handler';
 

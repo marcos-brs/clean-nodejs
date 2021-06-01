@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { HttpRequest, Controller } from '../../presentation/protocols';
+import { HttpRequest, Controller } from '../protocols';
 
 export const ExpressControllerAdapter = (controller: Controller) => {
   return async (
