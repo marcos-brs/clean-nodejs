@@ -8,19 +8,16 @@ import {
 import { SignIn } from '@/domain/usecases/auth';
 import { Uuid } from '@/infra/uuid/protocols';
 import { Uuidv4Adapter } from '@/infra/uuid/adapters';
-import { JwtAdapter } from '../../infra/cryptography/adapters/jwt-adapter';
-import { Encrypter, Hasher } from '../../infra/cryptography/protocols';
-import { BcryptAdapter } from '../../infra/cryptography/adapters';
-import { RoleRepository } from '../../infra/db/role/repositories/role-repository';
-import { MongoRoleRepository } from '../../infra/db/role/repositories/mongo/mongo-role-repository';
-import { MongoAccountRepository } from '../../infra/db/account/repositories/mongo/mongo-account-repository';
-import { AccountRepository } from '../../infra/db/account/repositories/account-repository';
+import { AccountRepository } from '@/infra/db/account/repositories/account-repository';
+import { MongoAccountRepository } from '@/infra/db/account/repositories/mongo/mongo-account-repository';
+import { RoleRepository } from '@/infra/db/role/repositories/role-repository';
+import { MongoRoleRepository } from '@/infra/db/role/repositories/mongo/mongo-role-repository';
 import {
   AddAccount,
   DeleteAccount,
   ListAccounts,
   UpdateAccount,
-} from '../../domain/usecases/account';
+} from '@/domain/usecases/account';
 import {
   DbAddAccount,
   DbAddRole,
@@ -31,7 +28,10 @@ import {
   DbSignIn,
   DbUpdateAccount,
   DbUpdateRole,
-} from '../../data/usecases';
+} from '@/data/usecases';
+import { Encrypter, Hasher } from '@/infra/cryptography/protocols';
+import { BcryptAdapter } from '@/infra/cryptography/adapters';
+import { JwtAdapter } from '@/infra/cryptography/adapters/jwt-adapter';
 
 container.registerSingleton<AccountRepository>(
   'AccountRepository',
