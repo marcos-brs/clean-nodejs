@@ -1,12 +1,14 @@
-import { v4 as uuidv4 } from 'uuid';
 import { injectable, inject } from 'tsyringe';
 import { AddRole } from '@/domain/usecases/role';
 import { RoleAlreadyRegistered } from '@/domain/errors';
 import { RoleRepository } from '@/infra/db/role/repositories/role-repository';
+import { Uuid } from '@/infra/uuid/protocols';
 
 @injectable()
 export class DbAddRole implements AddRole {
   constructor(
+    @inject('Uuid')
+    private uuid: Uuid,
     @inject('RoleRepository')
     private roleRepository: RoleRepository
   ) {}
@@ -17,7 +19,7 @@ export class DbAddRole implements AddRole {
     }
 
     const newRole = await this.roleRepository.create({
-      _id: uuidv4(),
+      _id: this.uuid.generate(),
       role,
       created_at: new Date(),
       updated_at: new Date(),

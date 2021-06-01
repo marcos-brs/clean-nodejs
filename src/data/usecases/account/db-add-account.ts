@@ -1,16 +1,18 @@
-import { v4 as uuidv4 } from 'uuid';
 import { injectable, inject } from 'tsyringe';
 import { AddAccount } from '@/domain/usecases/account';
 import { EmailAlreadyRegistered, RoleNotFound } from '@/domain/errors';
 import { Hasher } from '@/infra/cryptography/protocols';
 import { AccountRepository } from '@/infra/db/account/repositories/account-repository';
 import { RoleRepository } from '@/infra/db/role/repositories/role-repository';
+import { Uuid } from '@/infra/uuid/protocols';
 
 @injectable()
 export class DbAddAccount implements AddAccount {
   constructor(
     @inject('Hasher')
     private hasher: Hasher,
+    @inject('Uuid')
+    private uuid: Uuid,
     @inject('AccountRepository')
     private accountRepository: AccountRepository,
     @inject('RoleRepository')
@@ -44,7 +46,7 @@ export class DbAddAccount implements AddAccount {
     const hashedPassword = await this.hasher.hash(password);
 
     const newAccount = await this.accountRepository.create({
-      _id: uuidv4(),
+      _id: this.uuid.generate(),
       name,
       email,
       password: hashedPassword,
