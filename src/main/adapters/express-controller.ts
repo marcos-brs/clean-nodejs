@@ -9,6 +9,7 @@ export const ExpressControllerAdapter = (controller: Controller) => {
         params: req.params,
         query: req.query,
         headers: req.headers,
+        user: req.user,
       };
 
       const httpResponse = await controller(httpRequest);
