@@ -1,5 +1,5 @@
 import { HttpRequest } from '@/presentation/protocols';
-import { hasPermission } from '@/presentation/middlewares/has-permission-midddleware';
+import { hasPermission } from '@/presentation/middlewares';
 
 describe('hasPermissionMiddleware', () => {
   it('Should return statusCode 200 if user has permission', async () => {
