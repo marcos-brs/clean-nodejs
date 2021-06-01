@@ -1,5 +1,5 @@
 import { ReturnModelType } from '@typegoose/typegoose';
-import { FilterQuery } from 'mongoose';
+import { CreateQuery, FilterQuery } from 'mongoose';
 import { BaseRepository } from './base-repository';
 
 export class MongoBaseRepository<T extends { _id: string }, G>
@@ -8,9 +8,9 @@ export class MongoBaseRepository<T extends { _id: string }, G>
   protected ormRepository: ReturnModelType<new () => G>;
 
   public async create(data: T): Promise<T> {
-    const account = (await this.ormRepository.create(data)).toObject() as T;
+    const account = await this.ormRepository.create(data as CreateQuery<T>);
 
-    return account;
+    return account.toObject() as T;
   }
 
   public async findById(id: string): Promise<T | null> {
