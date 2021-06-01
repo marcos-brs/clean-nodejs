@@ -46,7 +46,7 @@
   "dependencies": {
     "@somosphi/logger": "^1.6.0",
     "@typegoose/typegoose": "^7.6.0",
-    "@types/mongoose": "^5.10.5",
+    "@types/mongoose": "<=5.10.18",
     "bcrypt": "^5.0.1",
     "bunyan-format": "^0.2.1",
     "class-validator": "^0.13.1",
@@ -56,7 +56,7 @@
     "helmet": "^4.6.0",
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.18",
+    "mongoose": "<=5.10.18",
     "reflect-metadata": "^0.1.13",
     "swagger-ui-express": "^4.1.6",
     "tsyringe": "^4.5.0",
