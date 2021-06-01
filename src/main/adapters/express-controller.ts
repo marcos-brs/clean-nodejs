@@ -21,7 +21,9 @@ export const ExpressControllerAdapter = (controller: Controller) => {
         res.status(httpResponse.statusCode).json(httpResponse.body);
       } else {
         res.status(httpResponse.statusCode).json({
-          error: httpResponse.body.message,
+          code: httpResponse.body.code,
+          message: httpResponse.body.message,
+          details: httpResponse.body.details,
         });
       }
     } catch (error) {

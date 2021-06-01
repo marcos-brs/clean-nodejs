@@ -20,7 +20,9 @@ export const ExpressMiddlewareAdapter = (middleware: Middleware) => {
       next();
     } else {
       res.status(httpResponse.statusCode).json({
-        error: httpResponse.body,
+        code: httpResponse.body.code,
+        message: httpResponse.body.message,
+        details: httpResponse.body.details,
       });
     }
   };
