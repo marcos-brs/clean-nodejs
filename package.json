@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node release/index.js",
     "dev": "ts-node-dev -r tsconfig-paths/register --transpile-only --ignore-watch node_modules --inspect=0.0.0.0:3352 ./src/index.ts",
-    "build": "rm -rf release && tsc -p tsconfig-build.json",
+    "build": "rimraf release && tsc -p tsconfig-build.json",
     "lint": "eslint --fix 'src/**/*.ts' 'tests/**/*.ts'",
     "test": "jest --passWithNoTests --runInBand --no-cache",
     "test:unit": "npm run test -- --watch -c jest-unit-config.js",
@@ -38,6 +38,7 @@
     "jest": "^26.6.3",
     "lint-staged": "^11.0.0",
     "prettier": "^2.3.0",
+    "rimraf": "^3.0.2",
     "ts-jest": "^26.5.6",
     "ts-node": "^10.0.0",
     "ts-node-dev": "^1.1.6",
