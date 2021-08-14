@@ -1,7 +1,8 @@
 import { modelOptions, prop, Ref } from '@typegoose/typegoose';
 import { Base } from '@typegoose/typegoose/lib/defaultClasses';
-import { string } from 'joi';
 import { RoleSchema } from '../role';
+import { StudentSchema } from '../student';
+import { VoluntarySchema } from '../voluntary';
 
 @modelOptions({
   schemaOptions: {
@@ -32,6 +33,15 @@ export class AccountSchema extends Base<string> {
 
   @prop({ ref: RoleSchema, type: String })
   public roles: Ref<RoleSchema>[];
+
+  @prop()
+  public type: string;
+
+  @prop({ ref: StudentSchema, type: String })
+  public student: Ref<RoleSchema>;
+
+  @prop({ ref: VoluntarySchema, type: String })
+  public voluntary: Ref<RoleSchema>;
 
   @prop()
   public created_at: Date;
