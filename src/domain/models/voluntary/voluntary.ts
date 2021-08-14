@@ -1,4 +1,4 @@
-export type Voluntario = {
+export type Voluntary = {
   _id: string;
   materia: string;
   cargo: string[];

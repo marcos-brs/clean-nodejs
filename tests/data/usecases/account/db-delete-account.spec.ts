@@ -9,8 +9,12 @@ describe('DbDeleteAccount', () => {
     await accountRepository.create({
       _id: 'any_id',
       name: 'any_name',
+      lastName: 'any_lastName',
+      dateOfBirth: new Date(),
       email: 'any_email',
       roles: [],
+      type: 'Student',
+      student: 'any_student_id',
       password: 'any_password',
       created_at: new Date(),
       updated_at: new Date(),

@@ -8,7 +8,7 @@ export type Account = {
   roles: string[];
   type: string;
   student?: string;
-  voluntario?: string;
+  voluntary?: string;
   created_at: Date;
   updated_at: Date;
   deleted_at: Date | null;
