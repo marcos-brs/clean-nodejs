@@ -14,6 +14,7 @@ import {
   ExpressControllerAdapter,
   ExpressMiddlewareAdapter,
 } from '@/presentation/adapters';
+import { StudentController } from '@/presentation/controllers/student';
 import { expressLogger } from './logger';
 import { errorHandler } from './error-handler';
 
@@ -42,6 +43,7 @@ export class HttpServer {
       container.resolve(AccountController),
       container.resolve(AuthController),
       container.resolve(RoleController),
+      container.resolve(StudentController),
     ];
   }
 
