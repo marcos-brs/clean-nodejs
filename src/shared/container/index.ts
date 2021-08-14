@@ -25,7 +25,6 @@ import {
 import {
   DbAddAccount,
   DbAddRole,
-  DbAddStudent,
   DbDeleteAccount,
   DbDeleteRole,
   DbListAccounts,
@@ -37,11 +36,6 @@ import {
 import { Encrypter, Hasher } from '@/infra/cryptography/protocols';
 import { BcryptAdapter } from '@/infra/cryptography/adapters';
 import { JwtAdapter } from '@/infra/cryptography/adapters/jwt-adapter';
-import {
-  MongoStudentRepository,
-  StudentRepository,
-} from '@/infra/db/students/repositories';
-import { AddStudent } from '@/domain/usecases/student/add-student';
 
 container.registerSingleton<AccountRepository>(
   'AccountRepository',
@@ -52,14 +46,8 @@ container.registerSingleton<RoleRepository>(
   MongoRoleRepository
 );
 
-container.registerSingleton<StudentRepository>(
-  'StudentRepository',
-  MongoStudentRepository
-);
-
 container.registerSingleton<AddAccount>('AddAccount', DbAddAccount);
 container.registerSingleton<AddRole>('AddRole', DbAddRole);
-container.registerSingleton<AddStudent>('AddStudent', DbAddStudent);
 
 container.registerSingleton<DeleteAccount>('DeleteAccount', DbDeleteAccount);
 container.registerSingleton<DeleteRole>('DeleteRole', DbDeleteRole);
