@@ -28,6 +28,7 @@ import {
   DbAddStudent,
   DbDeleteAccount,
   DbDeleteRole,
+  DbDeleteStudent,
   DbListAccounts,
   DbListRoles,
   DbSignIn,
@@ -42,6 +43,7 @@ import {
   StudentRepository,
 } from '@/infra/db/students/repositories';
 import { AddStudent } from '@/domain/usecases/student/add-student';
+import { DeleteStudent } from '@/domain/usecases/student';
 
 container.registerSingleton<AccountRepository>(
   'AccountRepository',
@@ -75,3 +77,4 @@ container.registerSingleton<SignIn>('SignIn', DbSignIn);
 container.registerSingleton<Hasher>('Hasher', BcryptAdapter);
 container.registerSingleton<Encrypter>('Encrypter', JwtAdapter);
 container.registerSingleton<Uuid>('Uuid', Uuidv4Adapter);
+container.registerSingleton<DeleteStudent>('DeleteStudent', DbDeleteStudent);
