@@ -1,3 +1,5 @@
+import { DbListStudents } from './../../data/usecases/student/db-list-students';
+import { ListStudents } from './../../domain/usecases/student/list-students';
 import { container } from 'tsyringe';
 import {
   AddRole,
@@ -78,3 +80,4 @@ container.registerSingleton<Hasher>('Hasher', BcryptAdapter);
 container.registerSingleton<Encrypter>('Encrypter', JwtAdapter);
 container.registerSingleton<Uuid>('Uuid', Uuidv4Adapter);
 container.registerSingleton<DeleteStudent>('DeleteStudent', DbDeleteStudent);
+container.registerSingleton<ListStudents>('ListStudents', DbListStudents);
