@@ -19,4 +19,11 @@ export class MemoryAccountRepository
 
     return foundData;
   }
+
+  public async findAllAndPopulateStudents(
+    pageIndex: number,
+    pageSize: number
+  ): Promise<Account[]> {
+    return this.model;
+  }
 }

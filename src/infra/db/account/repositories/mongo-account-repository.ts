@@ -1,6 +1,7 @@
 import { getModelForClass } from '@typegoose/typegoose';
 import { Account, AccountSchema } from '@/domain/models/account';
 import { MongoBaseRepository } from '@/shared/infra/db/repositories';
+import { StudentSchema } from '@/domain/models/student';
 import { AccountRepository } from './account-repository';
 
 export class MongoAccountRepository
@@ -18,5 +19,18 @@ export class MongoAccountRepository
     if (account === null) return null;
 
     return account.toObject() as Account;
+  }
+
+  public async findAllAndPopulateStudents(
+    pageIndex: number,
+    pageSize: number
+  ): Promise<Account[]> {
+    const accounts = await this.ormRepository
+      .find()
+      .limit(pageSize)
+      .skip((pageIndex - 1) * pageSize)
+      .populate('student');
+
+    return accounts as unknown as Account[];
   }
 }
