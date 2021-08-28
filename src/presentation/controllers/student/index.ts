@@ -6,11 +6,19 @@ import {
   HttpResponse,
 } from '@/presentation/protocols';
 import { validatorMiddleware } from '@/presentation/middlewares';
-import { AddStudent } from '@/domain/usecases/student/add-student';
-import { DeleteStudent } from '@/domain/usecases/student';
-import { ListStudents } from '@/domain/usecases/student/list-students';
+import {
+  AddStudent,
+  DeleteStudent,
+  ListStudents,
+  GetStudent,
+} from '@/domain/usecases/student';
 import { ok } from '@/presentation/helper';
-import { deleteSchema, signupSchema, listingSchema } from './schemas';
+import {
+  deleteSchema,
+  signupSchema,
+  listingSchema,
+  getSchema,
+} from './schemas';
 
 @injectable()
 @Controller('/student')
@@ -21,7 +29,9 @@ export class StudentController extends BaseController {
     @inject('DeleteStudent')
     private deleteStudent: DeleteStudent,
     @inject('ListStudents')
-    private listStudents: ListStudents
+    private listStudents: ListStudents,
+    @inject('GetStudent')
+    private getStudent: GetStudent
   ) {
     super();
   }
@@ -43,6 +53,13 @@ export class StudentController extends BaseController {
   @Get('/listing', [validatorMiddleware(listingSchema)])
   async listingStudents(req: HttpRequest): Promise<HttpResponse> {
     const response = await this.listStudents.list(req.body);
+
+    return ok(response);
+  }
+
+  @Get('/get', [validatorMiddleware(getSchema)])
+  async gettingStudent(req: HttpRequest): Promise<HttpResponse> {
+    const response = await this.getStudent.get(req.body);
 
     return ok(response);
   }
