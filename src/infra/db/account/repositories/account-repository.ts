@@ -8,4 +8,5 @@ export interface AccountRepository extends BaseRepository<Account> {
     pageIndex: number,
     pageSize: number
   ): Promise<Account[]>;
+  findStudentByEmail(email: string): Promise<Account | null>;
 }
