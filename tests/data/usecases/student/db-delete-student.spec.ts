@@ -34,7 +34,7 @@ describe('DeleteStudent', () => {
       student: 'any_student_id',
       created_at: new Date(),
       updated_at: new Date(),
-      deleted_at: null
+      deleted_at: null,
     });
 
     await studentRepository.create({
@@ -44,11 +44,10 @@ describe('DeleteStudent', () => {
       state: 'any_state',
     });
 
-
-    const isDeleted = await dbDeleteStudent.delete({email: 'any_email'});
+    const isDeleted = await dbDeleteStudent.delete({ email: 'any_email' });
     const student = await studentRepository.findById('any_student_id');
 
     expect(student).toBe(null);
     expect(isDeleted).toBe(true);
-   });
+  });
 });

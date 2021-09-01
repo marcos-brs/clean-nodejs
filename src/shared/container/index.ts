@@ -1,5 +1,3 @@
-import { DbListStudents } from './../../data/usecases/student/db-list-students';
-import { ListStudents } from './../../domain/usecases/student/list-students';
 import { container } from 'tsyringe';
 import {
   AddRole,
@@ -33,6 +31,7 @@ import {
   DbDeleteStudent,
   DbListAccounts,
   DbListRoles,
+  DbListStudents,
   DbSignIn,
   DbUpdateAccount,
   DbUpdateRole,
@@ -44,8 +43,11 @@ import {
   MongoStudentRepository,
   StudentRepository,
 } from '@/infra/db/students/repositories';
-import { AddStudent } from '@/domain/usecases/student/add-student';
-import { DeleteStudent } from '@/domain/usecases/student';
+import {
+  AddStudent,
+  DeleteStudent,
+  ListStudents,
+} from '@/domain/usecases/student';
 
 container.registerSingleton<AccountRepository>(
   'AccountRepository',
@@ -67,9 +69,11 @@ container.registerSingleton<AddStudent>('AddStudent', DbAddStudent);
 
 container.registerSingleton<DeleteAccount>('DeleteAccount', DbDeleteAccount);
 container.registerSingleton<DeleteRole>('DeleteRole', DbDeleteRole);
+container.registerSingleton<DeleteStudent>('DeleteStudent', DbDeleteStudent);
 
 container.registerSingleton<ListAccounts>('ListAccounts', DbListAccounts);
 container.registerSingleton<ListRoles>('ListRoles', DbListRoles);
+container.registerSingleton<ListStudents>('ListStudents', DbListStudents);
 
 container.registerSingleton<UpdateAccount>('UpdateAccount', DbUpdateAccount);
 container.registerSingleton<UpdateRole>('UpdateRole', DbUpdateRole);
@@ -79,5 +83,3 @@ container.registerSingleton<SignIn>('SignIn', DbSignIn);
 container.registerSingleton<Hasher>('Hasher', BcryptAdapter);
 container.registerSingleton<Encrypter>('Encrypter', JwtAdapter);
 container.registerSingleton<Uuid>('Uuid', Uuidv4Adapter);
-container.registerSingleton<DeleteStudent>('DeleteStudent', DbDeleteStudent);
-container.registerSingleton<ListStudents>('ListStudents', DbListStudents);
