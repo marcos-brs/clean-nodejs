@@ -1,6 +1,5 @@
 import { validateOrReject, ValidationError } from 'class-validator';
 import { HttpServer } from './http-server';
-import { logger } from './logger';
 import { env } from '../env';
 import { MongoDB } from './mongodb';
 
@@ -21,13 +20,13 @@ export class Application {
         env.mongoDatabase
       );
       this.mongoDB.connect();
-      logger.info(`MongoDB connected in port ${env.mongoPort}`);
+      console.log(`MongoDB connected in port ${env.mongoPort}`);
 
       this.httpServer = new HttpServer({
         port: env.httpPort,
       });
       this.httpServer.start();
-      logger.info(`Http server started in port ${this.httpServer.port}`);
+      console.log(`Http server started in port ${this.httpServer.port}`);
     } catch (err) {
       if (err.length && err[0] instanceof ValidationError) {
         this.throwEnvValidatorErrors(err);

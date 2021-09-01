@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 import { AccountNotFound } from '@/domain/errors';
 import { AccountRepository } from '@/infra/db/account/repositories';
-import { DeleteStudent } from '@/domain/usecases/student/delete-student';
+import { DeleteStudent } from '@/domain/usecases/student';
 import { DeleteAccount } from '@/domain/usecases/account';
 import { StudentRepository } from '@/infra/db/students/repositories';
 
@@ -16,20 +16,19 @@ export class DbDeleteStudent implements DeleteStudent {
     private deleteAccount: DeleteAccount
   ) {}
 
-  async delete(studentData: DeleteStudent.Params): Promise<DeleteStudent.Result> {
-    const {
-      email
-    } = studentData;
+  async delete(
+    studentData: DeleteStudent.Params
+  ): Promise<DeleteStudent.Result> {
+    const { email } = studentData;
 
-    const account = await this.accountRepository.findByEmail(email)
+    const account = await this.accountRepository.findByEmail(email);
     if (!account) {
       throw new AccountNotFound();
     }
 
     await this.studentRepository.delete(account.student);
-    await this.deleteAccount.delete({id: account._id});
+    await this.deleteAccount.delete({ id: account._id });
 
     return true;
-
   }
 }

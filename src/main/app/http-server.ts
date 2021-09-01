@@ -1,6 +1,7 @@
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
+import morgan from 'morgan';
 import { container } from 'tsyringe';
 import { NotFoundError } from '@/presentation/errors';
 import { HttpServerConfig } from '@/infra/http/protocols';
@@ -15,7 +16,6 @@ import {
   ExpressMiddlewareAdapter,
 } from '@/presentation/adapters';
 import { StudentController } from '@/presentation/controllers/student';
-import { expressLogger } from './logger';
 import { errorHandler } from './error-handler';
 
 export class HttpServer {
@@ -117,8 +117,7 @@ export class HttpServer {
 
     const encrypter = container.resolve<Encrypter>('Encrypter');
 
-    app.use(expressLogger.onError.bind(expressLogger));
-    app.use(expressLogger.onSuccess.bind(expressLogger));
+    app.use(morgan('tiny'));
     app.use(ExpressMiddlewareAdapter(addTokenToRequest(encrypter)));
     app.use('/zero-api/v1', router);
 
