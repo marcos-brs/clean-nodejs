@@ -15,7 +15,6 @@ import {
   ExpressMiddlewareAdapter,
 } from '@/presentation/adapters';
 import { StudentController } from '@/presentation/controllers/student';
-import { expressLogger } from './logger';
 import { errorHandler } from './error-handler';
 
 export class HttpServer {
@@ -117,8 +116,6 @@ export class HttpServer {
 
     const encrypter = container.resolve<Encrypter>('Encrypter');
 
-    app.use(expressLogger.onError.bind(expressLogger));
-    app.use(expressLogger.onSuccess.bind(expressLogger));
     app.use(ExpressMiddlewareAdapter(addTokenToRequest(encrypter)));
     app.use('/zero-api/v1', router);
 
