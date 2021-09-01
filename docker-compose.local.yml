@@ -1,7 +1,7 @@
 version: '3'
 services:
   local:
-    container_name: zero-engine
+    container_name: tracking-engine
     image: node:11
     links:
       - 'mongo:mongo'
@@ -12,7 +12,7 @@ services:
     ports:
       - 8080:8080
   mongo:
-    container_name: zero-mongo
+    container_name: tracking-mongo
     image: mongo
     ports:
       - 27017:27017

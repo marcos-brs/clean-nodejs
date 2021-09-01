@@ -119,7 +119,7 @@ export class HttpServer {
 
     app.use(morgan('tiny'));
     app.use(ExpressMiddlewareAdapter(addTokenToRequest(encrypter)));
-    app.use('/zero-api/v1', router);
+    app.use('/tracking-api/v1', router);
 
     app.use(
       '*',
