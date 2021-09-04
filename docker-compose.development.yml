@@ -1,8 +1,8 @@
 version: '3'
 services:
   development:
-    container_name: zero-engine
-    image: node:11
+    container_name: tracking-engine
+    image: node:12
     volumes:
       - .:/usr/src/service
     working_dir: /usr/src/service

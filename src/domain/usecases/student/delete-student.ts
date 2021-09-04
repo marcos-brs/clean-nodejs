@@ -1,7 +1,5 @@
-import { Account } from '@/domain/models/account';
-
 export interface DeleteStudent {
- delete: (studentData: DeleteStudent.Params) => Promise <DeleteStudent.Result>;
+  delete: (studentData: DeleteStudent.Params) => Promise<DeleteStudent.Result>;
 }
 
 export namespace DeleteStudent {
