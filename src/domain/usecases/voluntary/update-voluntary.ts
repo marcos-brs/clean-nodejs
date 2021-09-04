@@ -6,12 +6,12 @@ export interface UpdateVoluntary {
 
 export namespace UpdateVoluntary {
   export type Params = {
-    email: String;
-    name?: String;
-    lastName?: String;
+    email: string;
+    name?: string;
+    lastName?: string;
     dateOfBirth?: Date;
-    materia?: String;
-    cargo?: String[];
+    materia?: string;
+    cargo?: string[];
   };
 
   export type Result = Account;
