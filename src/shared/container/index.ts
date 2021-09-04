@@ -35,6 +35,8 @@ import {
   DbSignIn,
   DbUpdateAccount,
   DbUpdateRole,
+  DbListStudents,
+  DbGetStudent,
 } from '@/data/usecases';
 import { Encrypter, Hasher } from '@/infra/cryptography/protocols';
 import { BcryptAdapter } from '@/infra/cryptography/adapters';
@@ -46,6 +48,7 @@ import {
 import {
   AddStudent,
   DeleteStudent,
+  GetStudent,
   ListStudents,
 } from '@/domain/usecases/student';
 
@@ -83,3 +86,7 @@ container.registerSingleton<SignIn>('SignIn', DbSignIn);
 container.registerSingleton<Hasher>('Hasher', BcryptAdapter);
 container.registerSingleton<Encrypter>('Encrypter', JwtAdapter);
 container.registerSingleton<Uuid>('Uuid', Uuidv4Adapter);
+
+container.registerSingleton<DeleteStudent>('DeleteStudent', DbDeleteStudent);
+container.registerSingleton<ListStudents>('ListStudents', DbListStudents);
+container.registerSingleton<GetStudent>('GetStudent', DbGetStudent);

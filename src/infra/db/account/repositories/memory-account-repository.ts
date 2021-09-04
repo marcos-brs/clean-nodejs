@@ -26,4 +26,14 @@ export class MemoryAccountRepository
   ): Promise<Account[]> {
     return this.model;
   }
+
+  public async findStudentByEmail(email: string): Promise<Account | null> {
+    const foundData = this.model.find(data => data.email === email);
+
+    if (!foundData) {
+      return null;
+    }
+
+    return foundData;
+  }
 }

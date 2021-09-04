@@ -33,4 +33,12 @@ export class MongoAccountRepository
 
     return accounts as unknown as Account[];
   }
+
+  public async findStudentByEmail(email: string): Promise<Account | null> {
+    const account = await this.ormRepository
+      .findOne({ email })
+      .populate('student');
+
+    return account as unknown as Account;
+  }
 }
