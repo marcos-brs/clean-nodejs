@@ -26,6 +26,7 @@ import {
   DbAddAccount,
   DbAddRole,
   DbAddStudent,
+  DbAddVoluntary,
   DbDeleteAccount,
   DbDeleteRole,
   DbDeleteStudent,
@@ -51,6 +52,7 @@ import {
   GetStudent,
   ListStudents,
 } from '@/domain/usecases/student';
+import { AddVoluntary } from '@/domain/usecases/voluntary';
 
 container.registerSingleton<AccountRepository>(
   'AccountRepository',
@@ -69,6 +71,7 @@ container.registerSingleton<StudentRepository>(
 container.registerSingleton<AddAccount>('AddAccount', DbAddAccount);
 container.registerSingleton<AddRole>('AddRole', DbAddRole);
 container.registerSingleton<AddStudent>('AddStudent', DbAddStudent);
+container.registerSingleton<AddVoluntary>('AddVoluntary', DbAddVoluntary);
 
 container.registerSingleton<DeleteAccount>('DeleteAccount', DbDeleteAccount);
 container.registerSingleton<DeleteRole>('DeleteRole', DbDeleteRole);
