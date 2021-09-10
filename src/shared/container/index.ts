@@ -27,6 +27,7 @@ import {
   DbAddRole,
   DbAddStudent,
   DbAddVoluntary,
+  DbGetVoluntary,
   DbDeleteAccount,
   DbDeleteRole,
   DbDeleteStudent,
@@ -36,7 +37,6 @@ import {
   DbSignIn,
   DbUpdateAccount,
   DbUpdateRole,
-  DbListStudents,
   DbGetStudent,
 } from '@/data/usecases';
 import { Encrypter, Hasher } from '@/infra/cryptography/protocols';
@@ -93,3 +93,5 @@ container.registerSingleton<Uuid>('Uuid', Uuidv4Adapter);
 container.registerSingleton<DeleteStudent>('DeleteStudent', DbDeleteStudent);
 container.registerSingleton<ListStudents>('ListStudents', DbListStudents);
 container.registerSingleton<GetStudent>('GetStudent', DbGetStudent);
+
+container.registerSingleton<GetStudent>('GetVoluntary', DbGetVoluntary);
