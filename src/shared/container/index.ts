@@ -36,8 +36,8 @@ import {
   DbSignIn,
   DbUpdateAccount,
   DbUpdateRole,
-  DbListStudents,
   DbGetStudent,
+  DbUpdateVoluntary,
 } from '@/data/usecases';
 import { Encrypter, Hasher } from '@/infra/cryptography/protocols';
 import { BcryptAdapter } from '@/infra/cryptography/adapters';
@@ -52,7 +52,11 @@ import {
   GetStudent,
   ListStudents,
 } from '@/domain/usecases/student';
-import { AddVoluntary } from '@/domain/usecases/voluntary';
+import {
+  MongoVoluntariesRepository,
+  VoluntariesRepository,
+} from '@/infra/db/voluntaries';
+import { UpdateVoluntary, AddVoluntary } from '@/domain/usecases/voluntary';
 
 container.registerSingleton<AccountRepository>(
   'AccountRepository',
@@ -66,6 +70,11 @@ container.registerSingleton<RoleRepository>(
 container.registerSingleton<StudentRepository>(
   'StudentRepository',
   MongoStudentRepository
+);
+
+container.registerSingleton<VoluntariesRepository>(
+  'VoluntariesRepository',
+  MongoVoluntariesRepository
 );
 
 container.registerSingleton<AddAccount>('AddAccount', DbAddAccount);
@@ -82,6 +91,10 @@ container.registerSingleton<ListRoles>('ListRoles', DbListRoles);
 container.registerSingleton<ListStudents>('ListStudents', DbListStudents);
 
 container.registerSingleton<UpdateAccount>('UpdateAccount', DbUpdateAccount);
+container.registerSingleton<UpdateVoluntary>(
+  'UpdateVoluntary',
+  DbUpdateVoluntary
+);
 container.registerSingleton<UpdateRole>('UpdateRole', DbUpdateRole);
 
 container.registerSingleton<SignIn>('SignIn', DbSignIn);
