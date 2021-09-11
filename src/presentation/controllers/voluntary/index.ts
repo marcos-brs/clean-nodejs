@@ -1,22 +1,11 @@
-import { UpdateVoluntary } from '@/domain/usecases/voluntary';
-import { Controller, Patch } from '@/presentation/decorators';
+import { inject, injectable } from 'tsyringe';
+import { AddVoluntary, UpdateVoluntary } from '@/domain/usecases/voluntary';
+import { Controller, Patch, Post } from '@/presentation/decorators';
 import { ok } from '@/presentation/helper';
 import { validatorMiddleware } from '@/presentation/middlewares';
 import { HttpRequest, HttpResponse } from '@/presentation/protocols';
 import { BaseController } from '@/presentation/protocols/controller';
-import { inject, injectable } from 'tsyringe';
-import { updateSchema } from './schemas/update';
-import { inject, injectable } from 'tsyringe';
-import { Controller, Post, Delete, Get } from '@/presentation/decorators';
-import {
-  BaseController,
-  HttpRequest,
-  HttpResponse,
-} from '@/presentation/protocols';
-import { validatorMiddleware } from '@/presentation/middlewares';
-import { AddVoluntary } from '@/domain/usecases/voluntary/add-voluntary';
-import { ok } from '@/presentation/helper';
-import { signupSchema } from './schemas';
+import { signupSchema, updateSchema } from './schemas';
 
 @injectable()
 @Controller('/voluntary')
@@ -36,7 +25,7 @@ export class VoluntaryController extends BaseController {
 
     return ok(response);
   }
-  
+
   @Post('/signup', [validatorMiddleware(signupSchema)])
   async createVoluntary(req: HttpRequest): Promise<HttpResponse> {
     const response = await this.addVoluntary.add(req.body);
