@@ -41,4 +41,12 @@ export class MongoAccountRepository
 
     return account as unknown as Account;
   }
+
+  public async findVoluntaryByEmail(email: string): Promise<Account | null> {
+    const account = await this.ormRepository
+      .findOne({ email })
+      .populate('voluntary');
+
+    return account as unknown as Account;
+  }
 }

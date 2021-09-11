@@ -28,6 +28,7 @@ import {
   DbAddRole,
   DbAddStudent,
   DbAddVoluntary,
+  DbGetVoluntary,
   DbDeleteAccount,
   DbDeleteRole,
   DbDeleteStudent,
@@ -111,9 +112,11 @@ container.registerSingleton<UpdateRole>('UpdateRole', DbUpdateRole);
 
 container.registerSingleton<GetAccount>('GetAccount', DbGetAccount);
 container.registerSingleton<GetStudent>('GetStudent', DbGetStudent);
+container.registerSingleton<GetStudent>('GetVoluntary', DbGetVoluntary);
 
 container.registerSingleton<SignIn>('SignIn', DbSignIn);
 
 container.registerSingleton<Hasher>('Hasher', BcryptAdapter);
 container.registerSingleton<Encrypter>('Encrypter', JwtAdapter);
 container.registerSingleton<Uuid>('Uuid', Uuidv4Adapter);
+
