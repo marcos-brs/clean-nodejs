@@ -38,6 +38,7 @@ import {
   DbUpdateRole,
   DbGetStudent,
   DbUpdateVoluntary,
+  DbDeleteVoluntary,
 } from '@/data/usecases';
 import { Encrypter, Hasher } from '@/infra/cryptography/protocols';
 import { BcryptAdapter } from '@/infra/cryptography/adapters';
@@ -56,7 +57,11 @@ import {
   MongoVoluntariesRepository,
   VoluntariesRepository,
 } from '@/infra/db/voluntaries';
-import { UpdateVoluntary, AddVoluntary } from '@/domain/usecases/voluntary';
+import {
+  UpdateVoluntary,
+  AddVoluntary,
+  DeleteVoluntary,
+} from '@/domain/usecases/voluntary';
 
 container.registerSingleton<AccountRepository>(
   'AccountRepository',
@@ -85,6 +90,10 @@ container.registerSingleton<AddVoluntary>('AddVoluntary', DbAddVoluntary);
 container.registerSingleton<DeleteAccount>('DeleteAccount', DbDeleteAccount);
 container.registerSingleton<DeleteRole>('DeleteRole', DbDeleteRole);
 container.registerSingleton<DeleteStudent>('DeleteStudent', DbDeleteStudent);
+container.registerSingleton<DeleteVoluntary>(
+  'DeleteVoluntary',
+  DbDeleteVoluntary
+);
 
 container.registerSingleton<ListAccounts>('ListAccounts', DbListAccounts);
 container.registerSingleton<ListRoles>('ListRoles', DbListRoles);
