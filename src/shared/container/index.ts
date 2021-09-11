@@ -19,6 +19,7 @@ import {
 import {
   AddAccount,
   DeleteAccount,
+  GetAccount,
   ListAccounts,
   UpdateAccount,
 } from '@/domain/usecases/account';
@@ -38,6 +39,9 @@ import {
   DbUpdateAccount,
   DbUpdateRole,
   DbGetStudent,
+  DbUpdateVoluntary,
+  DbDeleteVoluntary,
+  DbGetAccount,
 } from '@/data/usecases';
 import { Encrypter, Hasher } from '@/infra/cryptography/protocols';
 import { BcryptAdapter } from '@/infra/cryptography/adapters';
@@ -52,7 +56,15 @@ import {
   GetStudent,
   ListStudents,
 } from '@/domain/usecases/student';
-import { AddVoluntary } from '@/domain/usecases/voluntary';
+import {
+  MongoVoluntariesRepository,
+  VoluntariesRepository,
+} from '@/infra/db/voluntaries';
+import {
+  UpdateVoluntary,
+  AddVoluntary,
+  DeleteVoluntary,
+} from '@/domain/usecases/voluntary';
 
 container.registerSingleton<AccountRepository>(
   'AccountRepository',
@@ -68,6 +80,11 @@ container.registerSingleton<StudentRepository>(
   MongoStudentRepository
 );
 
+container.registerSingleton<VoluntariesRepository>(
+  'VoluntariesRepository',
+  MongoVoluntariesRepository
+);
+
 container.registerSingleton<AddAccount>('AddAccount', DbAddAccount);
 container.registerSingleton<AddRole>('AddRole', DbAddRole);
 container.registerSingleton<AddStudent>('AddStudent', DbAddStudent);
@@ -76,13 +93,26 @@ container.registerSingleton<AddVoluntary>('AddVoluntary', DbAddVoluntary);
 container.registerSingleton<DeleteAccount>('DeleteAccount', DbDeleteAccount);
 container.registerSingleton<DeleteRole>('DeleteRole', DbDeleteRole);
 container.registerSingleton<DeleteStudent>('DeleteStudent', DbDeleteStudent);
+container.registerSingleton<DeleteVoluntary>(
+  'DeleteVoluntary',
+  DbDeleteVoluntary
+);
+container.registerSingleton<DeleteStudent>('DeleteStudent', DbDeleteStudent);
 
 container.registerSingleton<ListAccounts>('ListAccounts', DbListAccounts);
 container.registerSingleton<ListRoles>('ListRoles', DbListRoles);
 container.registerSingleton<ListStudents>('ListStudents', DbListStudents);
 
 container.registerSingleton<UpdateAccount>('UpdateAccount', DbUpdateAccount);
+container.registerSingleton<UpdateVoluntary>(
+  'UpdateVoluntary',
+  DbUpdateVoluntary
+);
 container.registerSingleton<UpdateRole>('UpdateRole', DbUpdateRole);
+
+container.registerSingleton<GetAccount>('GetAccount', DbGetAccount);
+container.registerSingleton<GetStudent>('GetStudent', DbGetStudent);
+container.registerSingleton<GetStudent>('GetVoluntary', DbGetVoluntary);
 
 container.registerSingleton<SignIn>('SignIn', DbSignIn);
 
@@ -90,8 +120,3 @@ container.registerSingleton<Hasher>('Hasher', BcryptAdapter);
 container.registerSingleton<Encrypter>('Encrypter', JwtAdapter);
 container.registerSingleton<Uuid>('Uuid', Uuidv4Adapter);
 
-container.registerSingleton<DeleteStudent>('DeleteStudent', DbDeleteStudent);
-container.registerSingleton<ListStudents>('ListStudents', DbListStudents);
-container.registerSingleton<GetStudent>('GetStudent', DbGetStudent);
-
-container.registerSingleton<GetStudent>('GetVoluntary', DbGetVoluntary);
