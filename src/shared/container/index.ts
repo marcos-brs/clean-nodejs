@@ -19,6 +19,7 @@ import {
 import {
   AddAccount,
   DeleteAccount,
+  GetAccount,
   ListAccounts,
   UpdateAccount,
 } from '@/domain/usecases/account';
@@ -39,6 +40,7 @@ import {
   DbGetStudent,
   DbUpdateVoluntary,
   DbDeleteVoluntary,
+  DbGetAccount,
 } from '@/data/usecases';
 import { Encrypter, Hasher } from '@/infra/cryptography/protocols';
 import { BcryptAdapter } from '@/infra/cryptography/adapters';
@@ -94,6 +96,7 @@ container.registerSingleton<DeleteVoluntary>(
   'DeleteVoluntary',
   DbDeleteVoluntary
 );
+container.registerSingleton<DeleteStudent>('DeleteStudent', DbDeleteStudent);
 
 container.registerSingleton<ListAccounts>('ListAccounts', DbListAccounts);
 container.registerSingleton<ListRoles>('ListRoles', DbListRoles);
@@ -106,12 +109,11 @@ container.registerSingleton<UpdateVoluntary>(
 );
 container.registerSingleton<UpdateRole>('UpdateRole', DbUpdateRole);
 
+container.registerSingleton<GetAccount>('GetAccount', DbGetAccount);
+container.registerSingleton<GetStudent>('GetStudent', DbGetStudent);
+
 container.registerSingleton<SignIn>('SignIn', DbSignIn);
 
 container.registerSingleton<Hasher>('Hasher', BcryptAdapter);
 container.registerSingleton<Encrypter>('Encrypter', JwtAdapter);
 container.registerSingleton<Uuid>('Uuid', Uuidv4Adapter);
-
-container.registerSingleton<DeleteStudent>('DeleteStudent', DbDeleteStudent);
-container.registerSingleton<ListStudents>('ListStudents', DbListStudents);
-container.registerSingleton<GetStudent>('GetStudent', DbGetStudent);
