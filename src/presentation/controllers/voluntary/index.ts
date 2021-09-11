@@ -3,15 +3,20 @@ import {
   AddVoluntary,
   DeleteVoluntary,
   UpdateVoluntary,
-  GetVoluntary
+  GetVoluntary,
 } from '@/domain/usecases/voluntary';
-import { Controller, Delete, Patch, Post } from '@/presentation/decorators';
+import {
+  Controller,
+  Delete,
+  Get,
+  Patch,
+  Post,
+} from '@/presentation/decorators';
 import { ok } from '@/presentation/helper';
-import { signupSchema, getSchema, deleteSchema, updateSchema } from './schemas';
 import { validatorMiddleware } from '@/presentation/middlewares';
 import { HttpRequest, HttpResponse } from '@/presentation/protocols';
 import { BaseController } from '@/presentation/protocols/controller';
-
+import { signupSchema, getSchema, deleteSchema, updateSchema } from './schemas';
 
 @injectable()
 @Controller('/voluntary')
@@ -43,11 +48,10 @@ export class VoluntaryController extends BaseController {
     return ok(response);
   }
 
-
   @Get('/get', [validatorMiddleware(getSchema)])
   async gettingVoluntary(req: HttpRequest): Promise<HttpResponse> {
     const response = await this.getVoluntary.get(req.body);
-    
+
     return ok(response);
   }
 
