@@ -1,7 +1,5 @@
 import { MemoryAccountRepository } from '@/infra/db/account/repositories';
 import { MemoryStudentRepository } from '@/infra/db/students/repositories';
-import { Uuidv4Adapter } from '@/infra/uuid/adapters';
-import { DbAddStudent } from '@/data/usecases/student';
 import { DeleteAccount } from '@/domain/usecases/account';
 import { DbDeleteStudent } from '@/data/usecases/student/db-delete-student';
 
