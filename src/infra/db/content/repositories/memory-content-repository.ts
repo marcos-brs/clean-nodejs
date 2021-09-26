@@ -9,4 +9,14 @@ export class MemoryContentRepository
   constructor() {
     super();
   }
+
+  public async findByDestinationUrl(url: string): Promise<Content | null> {
+    const foundData = this.model.find(data => data.destination_url === url);
+
+    if (!foundData) {
+      return null;
+    }
+
+    return foundData;
+  }
 }

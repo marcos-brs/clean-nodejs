@@ -12,4 +12,12 @@ export class MongoAccountRepository
     super();
     this.ormRepository = getModelForClass(ContentSchema);
   }
+
+  public async findByDestinationUrl(url: string): Promise<Content | null> {
+    const content = await this.ormRepository.findOne({ url });
+
+    if (content === null) return null;
+
+    return content.toObject() as Content;
+  }
 }
