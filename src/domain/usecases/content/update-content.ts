@@ -6,9 +6,9 @@ export interface UpdateContent {
 
 export namespace UpdateContent {
   export type Params = {
-    title: string;
+    destination_url: string;
+    title?: string;
     description?: string;
-    destination_url?: string;
     owner_id?: string;
     posted_at?: Date;
   };
