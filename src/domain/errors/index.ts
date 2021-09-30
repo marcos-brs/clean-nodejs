@@ -32,3 +32,9 @@ export class InvalidPassword extends Unauthorized {
     super('INVALID_PASSWORD', 'The password is incorrect');
   }
 }
+
+export class ContentAlreadyRegistered extends BadRequest {
+  constructor() {
+    super('CONTENT_ALREADY_REGISTERED', 'This content is already registered');
+  }
+}

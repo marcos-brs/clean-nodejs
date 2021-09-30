@@ -65,6 +65,8 @@ import {
   AddVoluntary,
   DeleteVoluntary,
 } from '@/domain/usecases/voluntary';
+import { AddContent } from '@/domain/usecases/content';
+import { DbAddContent } from '@/data/usecases/content';
 
 container.registerSingleton<AccountRepository>(
   'AccountRepository',
@@ -120,3 +122,4 @@ container.registerSingleton<Hasher>('Hasher', BcryptAdapter);
 container.registerSingleton<Encrypter>('Encrypter', JwtAdapter);
 container.registerSingleton<Uuid>('Uuid', Uuidv4Adapter);
 
+container.registerSingleton<AddContent>('AddContent', DbAddContent);
