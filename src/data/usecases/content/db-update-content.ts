@@ -11,16 +11,17 @@ export class DbUpdateContent implements UpdateContent {
   ) {}
 
   async update(data: UpdateContent.Params): Promise<UpdateContent.Result> {
-
-    const content = await this.contentRepository.findByDestinationUrl(data.destination_url)
+    const content = await this.contentRepository.findByDestinationUrl(
+      data.destination_url
+    );
 
     if (!content) {
       throw new ContentNotFound();
     }
 
-    Object.assign(content, { ...data })
+    Object.assign(content, { ...data });
 
-    await this.contentRepository.update(content)
+    await this.contentRepository.update(content);
 
     return content;
   }
