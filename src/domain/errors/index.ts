@@ -38,3 +38,9 @@ export class ContentAlreadyRegistered extends BadRequest {
     super('CONTENT_ALREADY_REGISTERED', 'This content is already registered');
   }
 }
+
+export class ContentNotFound extends BadRequest {
+  constructor() {
+    super('CONTENT_NOT_FOUND', 'This content was not found');
+  }
+}

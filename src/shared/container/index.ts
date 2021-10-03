@@ -67,8 +67,9 @@ import {
   AddVoluntary,
   DeleteVoluntary,
 } from '@/domain/usecases/voluntary';
-import { AddContent, ListContent } from '@/domain/usecases/content';
-import { DbAddContent, DbListContent } from '@/data/usecases/content';
+
+import { AddContent, DeleteContent, ListContent } from '@/domain/usecases/content';
+import { DbAddContent, DbDeleteContent, DbListContent } from '@/data/usecases/content';
 
 container.registerSingleton<AccountRepository>(
   'AccountRepository',
@@ -126,4 +127,5 @@ container.registerSingleton<Encrypter>('Encrypter', JwtAdapter);
 container.registerSingleton<Uuid>('Uuid', Uuidv4Adapter);
 
 container.registerSingleton<AddContent>('AddContent', DbAddContent);
+container.registerSingleton<DeleteContent>('DeleteContent', DbDeleteContent);
 container.registerSingleton<ListContent>('ListContent', DbListContent);
