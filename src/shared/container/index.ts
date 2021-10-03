@@ -42,6 +42,7 @@ import {
   DbUpdateVoluntary,
   DbDeleteVoluntary,
   DbGetAccount,
+  DbUpdateStudent,
 } from '@/data/usecases';
 import { Encrypter, Hasher } from '@/infra/cryptography/protocols';
 import { BcryptAdapter } from '@/infra/cryptography/adapters';
@@ -55,6 +56,7 @@ import {
   DeleteStudent,
   GetStudent,
   ListStudents,
+  UpdateStudent,
 } from '@/domain/usecases/student';
 import {
   MongoVoluntariesRepository,
@@ -65,8 +67,9 @@ import {
   AddVoluntary,
   DeleteVoluntary,
 } from '@/domain/usecases/voluntary';
-import { AddContent, DeleteContent } from '@/domain/usecases/content';
-import { DbAddContent, DbDeleteContent } from '@/data/usecases/content';
+
+import { AddContent, DeleteContent, ListContent } from '@/domain/usecases/content';
+import { DbAddContent, DbDeleteContent, DbListContent } from '@/data/usecases/content';
 
 container.registerSingleton<AccountRepository>(
   'AccountRepository',
@@ -110,6 +113,7 @@ container.registerSingleton<UpdateVoluntary>(
   'UpdateVoluntary',
   DbUpdateVoluntary
 );
+container.registerSingleton<UpdateStudent>('UpdateStudent', DbUpdateStudent);
 container.registerSingleton<UpdateRole>('UpdateRole', DbUpdateRole);
 
 container.registerSingleton<GetAccount>('GetAccount', DbGetAccount);
@@ -124,3 +128,4 @@ container.registerSingleton<Uuid>('Uuid', Uuidv4Adapter);
 
 container.registerSingleton<AddContent>('AddContent', DbAddContent);
 container.registerSingleton<DeleteContent>('DeleteContent', DbDeleteContent);
+container.registerSingleton<ListContent>('ListContent', DbListContent);

@@ -19,4 +19,11 @@ export class MemoryContentRepository
 
     return foundData;
   }
+
+  public async findAllPaginated(
+    pageIndex: number,
+    pageSize: number
+  ): Promise<Content[]> {
+    return this.model;
+  }
 }
