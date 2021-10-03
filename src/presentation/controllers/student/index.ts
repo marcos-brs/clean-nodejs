@@ -1,5 +1,11 @@
 import { inject, injectable } from 'tsyringe';
-import { Controller, Post, Delete, Get } from '@/presentation/decorators';
+import {
+  Controller,
+  Post,
+  Delete,
+  Get,
+  Patch,
+} from '@/presentation/decorators';
 import {
   BaseController,
   HttpRequest,
@@ -11,6 +17,7 @@ import {
   DeleteStudent,
   ListStudents,
   GetStudent,
+  UpdateStudent,
 } from '@/domain/usecases/student';
 import { ok } from '@/presentation/helper';
 import {
@@ -18,6 +25,7 @@ import {
   signupSchema,
   listingSchema,
   getSchema,
+  updateSchema,
 } from './schemas';
 
 @injectable()
@@ -31,7 +39,9 @@ export class StudentController extends BaseController {
     @inject('ListStudents')
     private listStudents: ListStudents,
     @inject('GetStudent')
-    private getStudent: GetStudent
+    private getStudent: GetStudent,
+    @inject('UpdateStudent')
+    private updateStudent: UpdateStudent
   ) {
     super();
   }
@@ -60,6 +70,13 @@ export class StudentController extends BaseController {
   @Get('/get', [validatorMiddleware(getSchema)])
   async gettingStudent(req: HttpRequest): Promise<HttpResponse> {
     const response = await this.getStudent.get(req.body);
+
+    return ok(response);
+  }
+
+  @Patch('/update', [validatorMiddleware(updateSchema)])
+  async patchStudent(req: HttpRequest): Promise<HttpResponse> {
+    const response = await this.updateStudent.update(req.body);
 
     return ok(response);
   }
