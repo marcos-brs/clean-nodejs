@@ -1,11 +1,12 @@
-import { AddContent } from '@/domain/usecases/content';
+import { AddContent, ListContent } from '@/domain/usecases/content';
 import { JwtAdapter } from '@/infra/cryptography/adapters/jwt-adapter';
 import { addTokenToRequest } from '@/presentation/middlewares';
 import { injectable, inject, container } from 'tsyringe';
-import { Controller, Post } from '../../decorators';
+import { Controller, Post, Get } from '../../decorators';
 import { ok } from '../../helper';
 import { validatorMiddleware } from '../../middlewares/validator-middleware';
 import { BaseController, HttpRequest, HttpResponse } from '../../protocols';
+import { listingSchema } from './schemas';
 import { createContentSchema } from './schemas/create-content-schema';
 
 @injectable()
@@ -13,7 +14,9 @@ import { createContentSchema } from './schemas/create-content-schema';
 export class ContentController extends BaseController {
   constructor(
     @inject('AddContent')
-    private addContent: AddContent
+    private addContent: AddContent,
+    @inject('ListContent')
+    private listContent: ListContent
   ) {
     super();
   }
@@ -32,6 +35,13 @@ export class ContentController extends BaseController {
     };
 
     const response = await this.addContent.add(content);
+
+    return ok(response);
+  }
+
+  @Get('/list', [validatorMiddleware(listingSchema)])
+  async listingContent(req: HttpRequest): Promise<HttpResponse> {
+    const response = await this.listContent.list(req.body);
 
     return ok(response);
   }
