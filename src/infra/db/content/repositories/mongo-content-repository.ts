@@ -20,4 +20,16 @@ export class MongoAccountRepository
 
     return content.toObject() as Content;
   }
+
+  public async findAllPaginated(
+    pageIndex: number,
+    pageSize: number
+  ): Promise<Content[]> {
+    const contents = await this.ormRepository
+      .find()
+      .limit(pageSize)
+      .skip((pageIndex - 1) * pageSize);
+
+    return contents as unknown as Content[];
+  }
 }
