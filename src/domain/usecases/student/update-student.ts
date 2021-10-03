@@ -10,9 +10,9 @@ export namespace UpdateStudent {
     name?: string;
     lastName?: string;
     dateOfBirth?: Date;
-    ciclo: string;
-    state: string;
-    school: string;
+    ciclo?: string;
+    state?: string;
+    school?: string;
   };
 
   export type Result = Account;
