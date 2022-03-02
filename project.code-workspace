@@ -6,21 +6,26 @@
   ],
   "settings": {
     "editor.tabSize": 2,
+    "editor.fontSize": 14,
     "editor.detectIndentation": true,
+    "explorer.compactFolders": false,
     "editor.wordWrap": "wordWrapColumn",
-    "editor.wordWrapColumn": 150,
-    "editor.rulers": [80, 100],
+    "editor.wordWrapColumn": 120,
+    "editor.rulers": [80, 120],
+    "editor.suggestSelection": "first",
+    "editor.fontLigatures": true,
     "editor.formatOnSave": true,
-    "[javascript]": {
-      "editor.formatOnSave": true
+    "editor.minimap.enabled": false,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
     },
-    "javascript.preferences.quoteStyle": "single",
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnPaste": false,
-    "[typescript]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
-      "editor.formatOnSave": true
+    "[javascript, typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "tabnine.experimentalAutoImports": true,
+    "workbench.editor.labelFormat": "short",
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.iconTheme": "material-icon-theme",
     "window.title": "${dirty}${folderName}${separator}${appName}"
   }
 }
