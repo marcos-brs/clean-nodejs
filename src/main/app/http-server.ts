@@ -15,7 +15,6 @@ import {
   ExpressControllerAdapter,
   ExpressMiddlewareAdapter,
 } from '@/presentation/adapters';
-import { expressLogger } from './logger';
 import { errorHandler } from './error-handler';
 
 export class HttpServer {
@@ -118,8 +117,6 @@ export class HttpServer {
 
     setupSwagger(app);
 
-    app.use(expressLogger.onError.bind(expressLogger));
-    app.use(expressLogger.onSuccess.bind(expressLogger));
     app.use(ExpressMiddlewareAdapter(addTokenToRequest(encrypter)));
     app.use('/zero-api/v1', router);
 

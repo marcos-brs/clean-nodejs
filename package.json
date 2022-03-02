@@ -44,7 +44,6 @@
     "typescript": "^4.2.4"
   },
   "dependencies": {
-    "@somosphi/logger": "^1.6.0",
     "@typegoose/typegoose": "^7.6.0",
     "@types/mongoose": "<=5.10.18",
     "axios": "^0.21.1",
