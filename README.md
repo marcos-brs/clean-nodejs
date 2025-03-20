@@ -87,5 +87,5 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2021 [Marcos Santana](https://github.com/zerocoolbr).<br />
+Copyright © 2021 [Marcos Santana](https://github.com/marcos-brs).<br />
 This project is [MIT](LICENSE) licensed.
