@@ -81,14 +81,6 @@ yarn dev
 
 After running the code, just navigate to http://localhost:8080/api-docs/
 
-## Author
-
-👤 **Marcos Santana**
-
-- Twitter: [@mbrsantana](https://twitter.com/mbrsantana)
-- Github: [@zerocoolbr](https://github.com/zerocoolbr)
-- LinkedIn: [@marcosbrs](https://linkedin.com/in/marcosbrs)
-
 ## Show your support
 
 Give a ⭐️ if this project helped you!
